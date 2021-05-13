@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Ground
+  - Wall
+  - Tree
   layers:
   - Default
   - TransparentFX
@@ -12,9 +16,9 @@ TagManager:
   - Water
   - UI
   - 
-  - 
-  - 
-  - 
+  - PushBox
+  - HurtBox
+  - HitBox
   - 
   - 
   - 
@@ -40,4 +44,25 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 851687669
+    locked: 0
+  - name: Trees
+    uniqueID: 3486919687
+    locked: 0
+  - name: Details
+    uniqueID: 3448188543
+    locked: 0
+  - name: Enemy
+    uniqueID: 2106625259
+    locked: 0
+  - name: Player
+    uniqueID: 1076162575
+    locked: 0
+  - name: Foreground Details
+    uniqueID: 1511434051
+    locked: 0
+  - name: Foreground
+    uniqueID: 991873521
     locked: 0
