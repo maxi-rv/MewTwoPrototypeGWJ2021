@@ -5,8 +5,8 @@ using UnityEngine;
 public class CheckHit : MonoBehaviour
 {
     // VARIABLES
-    [SerializeField] private bool isHurt;
-    [SerializeField] private string thisCharTag;
+    public bool isHurt;
+    private string thisCharTag;
 
     // Awake is called when the script instance is being loaded.
     void Awake()

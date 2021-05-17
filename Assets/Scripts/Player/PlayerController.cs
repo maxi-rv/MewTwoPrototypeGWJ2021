@@ -17,20 +17,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Material matWhite;
     
     // VARIABLES
-    private float maxHP = 5f;
-    private float currentHP;
+    public float maxHP = 5f;
+    public float currentHP;
     [SerializeField] private bool secondJumpAvailable;
     [SerializeField] private bool wallJumpAvailable;
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float regularJumpForce;
+    [SerializeField] private float jumpForce;
     [SerializeField] private float wallJumpForce;
     [SerializeField] private bool onTheGround;
-    private bool againstWall;
+    [SerializeField] private bool againstWall;
 
     // INPUT VARIABLES
-    private float HorizontalAxis;
-    private float VerticalAxis;
-    private bool JumpButton;
+    private float horizontalAxis;
+    private float verticalAxis;
+    private bool jumpButton;
 
     // Awake is called when the script instance is being loaded.
     void Awake()
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
     // FixedUpdate is called multiple times per frame.
     void FixedUpdate()
     {
-        //CheckHit();
+        CheckHit();
         CheckContact();
         Movement();
     }
@@ -63,21 +63,21 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Gets Axis Input
-        HorizontalAxis = Input.GetAxisRaw("Horizontal");
-        VerticalAxis = Input.GetAxisRaw("Vertical");
-        JumpButton = Input.GetButtonDown("Jump");
-        againstWall = checkWall.getAgainstWallLeft() || checkWall.getAgainstWallRight();
+        horizontalAxis = Input.GetAxisRaw("Horizontal");
+        verticalAxis = Input.GetAxisRaw("Vertical");
+        jumpButton = Input.GetButtonDown("Jump");
+        againstWall = checkWall.againstWallLeft || checkWall.againstWallRight;
 
         //CHhecking for the JumpButton is here instead of UpdateFixed, because it needs to check immediately
-        if(JumpButton)
+        if(jumpButton)
         {
             
-            if (!onTheGround && checkWall.getAgainstWallRight())
+            if (!onTheGround && checkWall.againstWallRight)
             {
                 WallJump(-1);
                 wallJumpAvailable = false;
             }
-            else if (!onTheGround && checkWall.getAgainstWallLeft())
+            else if (!onTheGround && checkWall.againstWallLeft)
             {
                 WallJump(1);
                 wallJumpAvailable = false;
@@ -98,18 +98,18 @@ public class PlayerController : MonoBehaviour
     private void Movement()
     {
         // If Left or Right is pressed.
-        if (HorizontalAxis > 0.5f || HorizontalAxis < -0.5f)
+        if (horizontalAxis > 0.5f || horizontalAxis < -0.5f)
         {
-            MovementOnAxis(HorizontalAxis);
+            MovementOnAxis(horizontalAxis);
 
             animator.SetBool("Moving", true);
 
             if(rigidBody2D.velocity.y <= 1f)
-                FlipSprite(HorizontalAxis);
+                FlipSprite(horizontalAxis);
         }
 
         // If NO Left or Right is pressed.
-        if(HorizontalAxis < 0.1f && HorizontalAxis > -0.1f)
+        if(horizontalAxis < 0.1f && horizontalAxis > -0.1f)
         {
             if(onTheGround)
                 MovementOnAxis(0f);
@@ -125,15 +125,17 @@ public class PlayerController : MonoBehaviour
     {
         float movementDirection = moveHorizontal * moveSpeed;
         
-        if(againstWall)
-        {
-            rigidBody2D.velocity = new Vector2(movementDirection, rigidBody2D.velocity.y/1.25f);
-        }
-        else if(wallJumpAvailable)
+        //if(againstWall)
+        //{
+        //    rigidBody2D.velocity = new Vector2(movementDirection, rigidBody2D.velocity.y/1.25f);
+        //}
+        //else if
+
+        if(wallJumpAvailable)
         {
             rigidBody2D.velocity = new Vector2(movementDirection, rigidBody2D.velocity.y);
         }
-        else if(!wallJumpAvailable && rigidBody2D.velocity.y<=0f)
+        else if(!wallJumpAvailable && rigidBody2D.velocity.normalized.y<=0.25f)
         {
             rigidBody2D.velocity = new Vector2(movementDirection, rigidBody2D.velocity.y);
         }   
@@ -159,14 +161,16 @@ public class PlayerController : MonoBehaviour
     {
         onTheGround = checkGround.getIfOnTheGround();
 
-        if (!onTheGround)
+        if (!onTheGround && rigidBody2D.velocity.normalized.y<=0f)
         {
-            animator.SetBool("Jumping", true);
+            animator.SetBool("Falling", true);
+            animator.SetBool("Jumping", false);
         }
 
         if (onTheGround)
         {
             animator.SetBool("Jumping", false);
+            animator.SetBool("Falling", false);
             secondJumpAvailable = true;
             wallJumpAvailable = true;
         }
@@ -176,20 +180,64 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         rigidBody2D.velocity = new Vector2(rigidBody2D.velocity.x, 0f);
-        rigidBody2D.AddForce(new Vector2(0f, regularJumpForce), ForceMode2D.Impulse);
+        rigidBody2D.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         checkGround.setIfOnTheGround(false);
         animator.SetBool("Jumping", true);
+        animator.SetBool("Falling", false);
     }
 
     // Adds an inclined force to the player.
     private void WallJump(float sign)
     {
         rigidBody2D.velocity = new Vector2(0f, 0f);
-        rigidBody2D.AddForce(new Vector2(sign*wallJumpForce/1.5f, wallJumpForce/1.25f), ForceMode2D.Impulse);
+        rigidBody2D.AddForce(new Vector2(sign*wallJumpForce/1.5f, wallJumpForce/1f), ForceMode2D.Impulse);
         checkGround.setIfOnTheGround(false);
         animator.SetBool("Jumping", true);
+        animator.SetBool("Falling", false);
         FlipSprite(sign);
     }
 
+    // Checks if the HurtBox has collided with a HitBox from another Object.
+    private void CheckHit()
+    {
+        if(checkHit.isHurt)
+        {
+            GetHurt();
+        }
+    }
 
+    // Sets required variables to execute the hurting state.
+    private void GetHurt()
+    {
+        checkHit.isHurt = false;
+        hurtBox.enabled = false;
+        currentHP--;
+
+        // Make a knockback or some hurting effect!!!
+        FlashWhite();
+        Invoke("FlashBack", 0.1f);
+        Invoke("FlashWhite", 0.2f);
+        Invoke("FlashBack", 0.3f);
+        Invoke("FlashWhite", 0.4f);
+        Invoke("FlashBack", 0.5f);
+        Invoke("FlashWhite", 0.6f);
+        Invoke("FlashBack", 0.7f);
+        Invoke("StopHurt", 0.8f);
+    }
+
+    private void FlashWhite()
+    {
+        spriteRenderer.material = matWhite;
+    }
+
+    private void FlashBack()
+    {
+        spriteRenderer.material = matDefault;
+    }
+
+    // Sets required variables to stop the hurting state.
+    public void StopHurt()
+    {
+        hurtBox.enabled = true;
+    }
 }

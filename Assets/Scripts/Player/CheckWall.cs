@@ -5,8 +5,8 @@ using UnityEngine;
 public class CheckWall : MonoBehaviour
 {
     // VARIABLES
-    [SerializeField] private bool againstWallLeft;
-    [SerializeField] private bool againstWallRight;
+    public bool againstWallLeft;
+    public bool againstWallRight;
     [SerializeField] private CheckWallAUX checkRight;
     [SerializeField] private CheckWallAUX checkLeft;
 
@@ -21,17 +21,5 @@ public class CheckWall : MonoBehaviour
     {
         againstWallLeft = checkLeft.getAgainstWall();
         againstWallRight = checkRight.getAgainstWall();
-    }
-
-    // Returns if it detects collision to a wall from the right.
-    public bool getAgainstWallRight()
-    {
-        return againstWallRight;
-    }
-
-    // Returns if it detects collision to a wall from the left.
-    public bool getAgainstWallLeft()
-    {
-        return againstWallLeft;
     }
 }
