@@ -130,30 +130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6121240333042876361, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: delayToCenter
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6121240333042876361, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: verticalLimitUp
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 6121240333042876361, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: verticalLimitDown
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6121240333042876365, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: m_PixelSnapping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6121240333042876365, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: m_RefResolutionX
-      value: 640
-      objectReference: {fileID: 0}
-    - target: {fileID: 6121240333042876365, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: m_RefResolutionY
-      value: 360
-      objectReference: {fileID: 0}
     - target: {fileID: 6121240333380415525, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
       propertyPath: m_Name
       value: GameController

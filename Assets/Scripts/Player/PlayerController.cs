@@ -59,7 +59,6 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame.
-    // Is executed after FixedUpdate.
     void Update()
     {
         // Gets Axis Input

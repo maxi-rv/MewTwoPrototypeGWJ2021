@@ -173,11 +173,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targets: []
-  verticalLimitUp: 13
-  verticalLimitDown: -2.5
-  delayToCenter: 0.2
-  maxZoom: 14
-  minZoom: 7
+  verticalLimitUp: 16
+  verticalLimitDown: -5
+  delayToCenter: 0.1
+  maxZoom: 0
+  minZoom: 0
   zoomLimiter: 50
 --- !u!114 &6121240333042876365
 MonoBehaviour:
@@ -191,13 +191,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AssetsPPU: 80
-  m_RefResolutionX: 1366
-  m_RefResolutionY: 768
+  m_AssetsPPU: 128
+  m_RefResolutionX: 640
+  m_RefResolutionY: 360
   m_UpscaleRT: 0
-  m_PixelSnapping: 0
-  m_CropFrameX: 1
-  m_CropFrameY: 1
+  m_PixelSnapping: 1
+  m_CropFrameX: 0
+  m_CropFrameY: 0
   m_StretchFill: 1
 --- !u!1 &6121240333084556983
 GameObject:

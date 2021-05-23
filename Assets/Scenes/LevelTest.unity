@@ -1725,9 +1725,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1978596475}
   - component: {fileID: 1978596474}
-  m_Layer: 0
+  - component: {fileID: 1978596476}
+  m_Layer: 7
   m_Name: Tronco-1
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1798,6 +1799,70 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &1978596476
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978596473}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.3, y: 4.825}
+    newSize: {x: 2.3, y: 4.825}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.4625, y: -1.9125}
+      - {x: 0.4625, y: -1.5875}
+      - {x: 0.4125, y: -0.95}
+      - {x: 0.3625, y: -0.4625}
+      - {x: 0.3, y: -0.0125}
+      - {x: 0.2875, y: 0}
+      - {x: 0.3125, y: 0.7375}
+      - {x: 0.38750002, y: 1.1625}
+      - {x: 0.425, y: 1.65}
+      - {x: 0.45000002, y: 2.2}
+      - {x: 0.425, y: 2.2125}
+      - {x: 0.125, y: 2.2125}
+      - {x: 0.0875, y: 2.1125}
+      - {x: 0.0375, y: 1.4625}
+      - {x: -0.075, y: 0.8875}
+      - {x: -0.112500004, y: 0.5375}
+      - {x: -0.1375, y: 0.2375}
+      - {x: -0.1375, y: -0.3}
+      - {x: -0.125, y: -0.4625}
+      - {x: -0.112500004, y: -0.575}
+      - {x: -0.1, y: -0.7625}
+      - {x: -0.1, y: -1.025}
+      - {x: -0.15, y: -1.4625}
+      - {x: -0.3, y: -1.9375}
+      - {x: -0.3625, y: -2.15}
+      - {x: -0.575, y: -2.325}
+      - {x: -0.575, y: -2.375}
+      - {x: -0.4875, y: -2.4125001}
+      - {x: -0.26250002, y: -2.4125001}
+      - {x: -0.125, y: -2.3875}
+      - {x: -0.0125, y: -2.3125}
+      - {x: 0.05, y: -2.2375}
+      - {x: 0.16250001, y: -2.3500001}
+      - {x: 0.275, y: -2.3875}
+      - {x: 0.4125, y: -2.4125001}
+      - {x: 0.675, y: -2.4125001}
+      - {x: 0.6875, y: -2.4}
+      - {x: 0.6125, y: -2.15}
+      - {x: 0.5375, y: -2}
 --- !u!1 &1999458512
 GameObject:
   m_ObjectHideFlags: 0
