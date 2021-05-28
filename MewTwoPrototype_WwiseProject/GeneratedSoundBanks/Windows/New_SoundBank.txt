@@ -1,0 +1,11 @@
+Event	ID	Name			Wwise Object Path	Notes
+	4258653052	TEST_EVENT			\Default Work Unit\TEST_EVENT	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	271149852	Boss_Fight_Drums	D:\Proyectos\Unity\MewTwoPrototype\MewTwoPrototype_WwiseProject\.cache\Windows\SFX\Boss_Fight_Drums_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Boss_Fight_Drums		2633208
+	353066711	Boss_Fight_Tuba	D:\Proyectos\Unity\MewTwoPrototype\MewTwoPrototype_WwiseProject\.cache\Windows\SFX\Boss_Fight_Tuba_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Boss_Fight_Tuba		2633208
+	606317978	Boss_Fight_Angry	D:\Proyectos\Unity\MewTwoPrototype\MewTwoPrototype_WwiseProject\.cache\Windows\SFX\Boss_Fight_Angry_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Boss_Fight_Angry		2633208
+	656237566	Boss_Fight_Trmpt	D:\Proyectos\Unity\MewTwoPrototype\MewTwoPrototype_WwiseProject\.cache\Windows\SFX\Boss_Fight_Trmpt_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Boss_Fight_Trmpt		2633208
+	802483594	Boss_Fight_Shouts	D:\Proyectos\Unity\MewTwoPrototype\MewTwoPrototype_WwiseProject\.cache\Windows\SFX\Boss_Fight_Shouts_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Boss_Fight_Shouts		2633208
+	1069156561	Boss_Fight_Trmb	D:\Proyectos\Unity\MewTwoPrototype\MewTwoPrototype_WwiseProject\.cache\Windows\SFX\Boss_Fight_Trmb_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Boss_Fight_Trmb		2633208
+

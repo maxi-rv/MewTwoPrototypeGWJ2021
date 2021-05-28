@@ -71,9 +71,6 @@ crashlytics-build.properties
 .cache
 .backup
 
-GeneratedSoundBanks/
-GeneratedSoundBanks*
-
 AkWwiseProjectData.asset
 
 Assets/WwiseSettings.xml
