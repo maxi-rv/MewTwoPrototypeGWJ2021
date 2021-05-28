@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Wall
   - Tree
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -48,19 +49,25 @@ TagManager:
   - name: Background
     uniqueID: 851687669
     locked: 0
-  - name: Trees
+  - name: Tree-Trunks
     uniqueID: 3486919687
     locked: 0
-  - name: Details
-    uniqueID: 3448188543
+  - name: Tree-Branches
+    uniqueID: 340884793
     locked: 0
-  - name: Enemy
+  - name: Background-Details
+    uniqueID: 1720919911
+    locked: 0
+  - name: Enemies
     uniqueID: 2106625259
     locked: 0
   - name: Player
     uniqueID: 1076162575
     locked: 0
-  - name: Foreground Details
+  - name: Tree-Details
+    uniqueID: 3448188543
+    locked: 0
+  - name: Foreground-Details
     uniqueID: 1511434051
     locked: 0
   - name: Foreground

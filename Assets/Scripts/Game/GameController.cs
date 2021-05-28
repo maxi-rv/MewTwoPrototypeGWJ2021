@@ -36,6 +36,12 @@ public class GameController : MonoBehaviour
         this.instantiatePlayer();
     }
 
+    void Start() 
+    {
+        //Wwise
+        //AkSoundEngine.SetState("Dead_Or_Alive", "Alive");
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -48,6 +54,7 @@ public class GameController : MonoBehaviour
                     uiController.currentHP = playerController.currentHP;
                     destroyPlayer();
                     reloadScene(currentSceneName);
+                    instantiatePlayer();
                 }
             }
     }
@@ -85,7 +92,6 @@ public class GameController : MonoBehaviour
     {
         SceneManager.UnloadSceneAsync(scene);
         SceneManager.LoadScene(scene, LoadSceneMode.Additive);
-        instantiatePlayer();
     }
 
     private void unloadScene(string scene)

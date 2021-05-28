@@ -5,7 +5,8 @@ using UnityEngine;
 public class CheckGround : MonoBehaviour
 {
     // VARIABLES
-    [SerializeField] private bool onTheGround;
+    public bool onTheGround;
+    public string otherTag;
 
     // Awake is called when the script instance is being loaded.
     void Awake()
@@ -17,9 +18,10 @@ public class CheckGround : MonoBehaviour
     void OnTriggerStay2D(Collider2D other)
     {
         //Compares the hitbox tag with its own tag.
-        if(other.gameObject.CompareTag("Ground"))
+        if(other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Platform"))
         {
             onTheGround = true;
+            otherTag = other.gameObject.tag;
         }
     }
 
@@ -30,15 +32,5 @@ public class CheckGround : MonoBehaviour
         {
             onTheGround = false;
         }
-    }
-
-    public bool getIfOnTheGround()
-    {
-        return onTheGround;
-    }
-
-    public void setIfOnTheGround(bool onTheGround)
-    {
-        this.onTheGround = onTheGround;
     }
 }

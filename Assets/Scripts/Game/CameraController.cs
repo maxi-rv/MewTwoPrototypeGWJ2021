@@ -12,10 +12,10 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float verticalLimitUp;
     [SerializeField] private float verticalLimitDown;
     [SerializeField] private float delayToCenter;
-    [SerializeField] private float maxZoom;
-    [SerializeField] private float minZoom;
-    [SerializeField] private float zoomLimiter;
-    private Vector3 offset;
+    private float maxZoom;
+    private float minZoom;
+    private float zoomLimiter;
+    [SerializeField] private Vector3 offset;
     private Vector3 velocity;
     private Bounds bounds;
 
@@ -25,6 +25,24 @@ public class CameraController : MonoBehaviour
         cam = GetComponent<Camera>();
         offset = new Vector3(0f, 0f, -5f);
         zoomLimiter = 50f;
+    }
+
+    void Update() 
+    {
+        /*
+        if(velocity.normalized.y >= 1f)
+        {
+            offset =  new Vector3(0f,-0.5f,-5f);
+        }
+        else if(velocity.normalized.y <= -1f)
+        {
+            offset =  new Vector3(0f,0.5f,-5f);
+        }
+        else
+        {
+            offset =  new Vector3(0f,0f,-5f);
+        }
+        */
     }
 
     // FixedUpdate is called multiple times per frame.
@@ -42,8 +60,8 @@ public class CameraController : MonoBehaviour
             }
 
             moveCamera();
-            //zoomCamera();
         }
+        
         
     }
 

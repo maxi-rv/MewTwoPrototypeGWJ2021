@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3335333263579346630}
   - component: {fileID: 4339200832957787988}
+  - component: {fileID: 8500739149861605977}
   m_Layer: 7
   m_Name: CheckTree
   m_TagString: Player
@@ -47,6 +48,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.1}
   serializedVersion: 2
   m_Radius: 0.05
+--- !u!114 &8500739149861605977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871843828586705323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 826048ffb26b6ad479854281894015eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overATree: 0
 --- !u!1 &4721134543449168707
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,7 +146,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4721134543759675922}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.055, y: 0.002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4721134543449168706}
@@ -161,17 +175,24 @@ MonoBehaviour:
   checkHit: {fileID: 4721134544473203804}
   checkGround: {fileID: 4721134544767646723}
   checkWall: {fileID: 4721134544728180395}
+  checkTree: {fileID: 8500739149861605977}
   matDefault: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   matWhite: {fileID: 2100000, guid: 30d4f2b9a13631745a04440c8a4b4dad, type: 2}
+  shurikenPrefab: {fileID: 3692352562470081075, guid: eec4354bdcd3b4f44ac6f78198595cac, type: 3}
   maxHP: 5
   currentHP: 0
   secondJumpAvailable: 0
   wallJumpAvailable: 0
+  treeJumpAvailable: 0
   moveSpeed: 5
   jumpForce: 10
   wallJumpForce: 10
+  shurikenSpeed: 5
   onTheGround: 0
   againstWall: 0
+  overATree: 0
+  climbingTree: 0
+  leavePlatformFlagger: 0
 --- !u!95 &4721134543759675935
 Animator:
   serializedVersion: 3
@@ -230,7 +251,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1076162575
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -1230295423332175514, guid: a992a6b3fa21fd744b46bd40bd14dd7b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -308,8 +329,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.04}
-  m_Size: {x: 0.25, y: 0.45}
+  m_Offset: {x: 0, y: -0.075}
+  m_Size: {x: 0.15, y: 0.4}
   m_Direction: 0
 --- !u!1 &4721134544347301903
 GameObject:
@@ -368,7 +389,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.1, y: 0}
+  m_Offset: {x: 0.075, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -379,7 +400,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.25}
+  m_Size: {x: 0.075, y: 0.2}
   m_EdgeRadius: 0
 --- !u!1 &4721134544473203795
 GameObject:
@@ -546,6 +567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onTheGround: 1
+  otherTag: 
 --- !u!61 &4721134544767646720
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -629,7 +651,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.1, y: 0}
+  m_Offset: {x: -0.075, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -640,5 +662,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.25}
+  m_Size: {x: 0.075, y: 0.2}
   m_EdgeRadius: 0

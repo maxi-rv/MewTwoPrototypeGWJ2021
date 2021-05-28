@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{9319908D-C123-4E75-A80F-5AD115F182BA}" SchemaVersion="103">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{9319908D-C123-4E75-A80F-5AD115F182BA}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="TEST_EVENT" ID="{2CDA0377-17FE-40ED-873E-75ABCC751BFC}">
+					<ChildrenList>
+						<Action Name="" ID="{D4A48823-5F4B-4352-8F7F-81FD700E6865}" ShortID="375502569">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Boss_Fight_Angry" ID="{B62579CA-061C-4359-ACB1-E4853255CEF6}" WorkUnitID="{1B6F1E03-7D35-43A5-8CF2-7966A4248C94}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{6F4F00D7-6D6F-40F8-849E-BFF3C805AEA1}" ShortID="6066713">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Boss_Fight_Drums" ID="{DC472AC3-1EB4-40BE-8784-0C84EFFAD907}" WorkUnitID="{1B6F1E03-7D35-43A5-8CF2-7966A4248C94}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{6266747A-A5F6-458C-BC99-AD260041B539}" ShortID="570851941">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Boss_Fight_Shouts" ID="{951E48F0-FFF5-4895-9672-146804D78805}" WorkUnitID="{1B6F1E03-7D35-43A5-8CF2-7966A4248C94}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{A96CF931-5FFC-4F20-A1D4-C521D5E9EBE2}" ShortID="128770150">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Boss_Fight_Trmb" ID="{C121AF76-2EF8-43DE-825D-6A3E827CAF2F}" WorkUnitID="{1B6F1E03-7D35-43A5-8CF2-7966A4248C94}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{E339CB9A-FBF1-45E4-92D5-3F854AB69C83}" ShortID="268237875">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Boss_Fight_Trmpt" ID="{FDBBB02E-48ED-4578-BDB5-157403521411}" WorkUnitID="{1B6F1E03-7D35-43A5-8CF2-7966A4248C94}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{DFC72291-4775-429F-A1D9-A6A3CF89BA89}" ShortID="922336459">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Boss_Fight_Tuba" ID="{76908887-42C3-487B-8354-7A68E27A83FC}" WorkUnitID="{1B6F1E03-7D35-43A5-8CF2-7966A4248C94}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

@@ -13,24 +13,33 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CheckHit checkHit;
     [SerializeField] private CheckGround checkGround;
     [SerializeField] private CheckWall checkWall;
+    [SerializeField] private CheckTree checkTree;
     [SerializeField] private Material matDefault;
     [SerializeField] private Material matWhite;
+    [SerializeField] private GameObject shurikenPrefab;
     
     // VARIABLES
     public float maxHP = 5f;
     public float currentHP;
     [SerializeField] private bool secondJumpAvailable;
     [SerializeField] private bool wallJumpAvailable;
+    [SerializeField] private bool treeJumpAvailable;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
     [SerializeField] private float wallJumpForce;
+    [SerializeField] private float shurikenSpeed;
     [SerializeField] private bool onTheGround;
     [SerializeField] private bool againstWall;
+    [SerializeField] private bool overATree;
+    [SerializeField] private bool climbingTree;
+    [SerializeField] private int leavePlatformFlagger;
 
     // INPUT VARIABLES
     private float horizontalAxis;
     private float verticalAxis;
     private bool jumpButton;
+    private bool hangButton;
+    private bool attackButton;
 
     // Awake is called when the script instance is being loaded.
     void Awake()
@@ -47,14 +56,18 @@ public class PlayerController : MonoBehaviour
         currentHP = maxHP;
         secondJumpAvailable = false;
         wallJumpAvailable = false;
+        treeJumpAvailable = false;
         againstWall = false;
+        overATree = false;
+        climbingTree = false;
+        leavePlatformFlagger = 0;
     }
 
     // FixedUpdate is called multiple times per frame.
     void FixedUpdate()
     {
         CheckHit();
-        CheckContact();
+        CheckGround();
         Movement();
     }
 
@@ -65,12 +78,27 @@ public class PlayerController : MonoBehaviour
         horizontalAxis = Input.GetAxisRaw("Horizontal");
         verticalAxis = Input.GetAxisRaw("Vertical");
         jumpButton = Input.GetButtonDown("Jump");
-        againstWall = checkWall.againstWallLeft || checkWall.againstWallRight;
+        hangButton = Input.GetButtonDown("Jump");
+        attackButton = Input.GetButtonDown("Attack");
 
-        //CHhecking for the JumpButton is here instead of UpdateFixed, because it needs to check immediately
+        //Checks contact with enviroment elements 
+        againstWall = checkWall.againstWallLeft || checkWall.againstWallRight;
+        overATree = checkTree.overATree;
+        //Checking the Ground is a separate check on "CheckGround()"
+
+        if(attackButton)
+        {
+            animator.SetTrigger("RangedAttack");
+        }
+
+        if(hangButton && overATree && !onTheGround)
+        {
+            rigidBody2D.bodyType = RigidbodyType2D.Kinematic;
+        }
+
+        //Checking for the JumpButton is here instead of UpdateFixed, because it needs to check immediately
         if(jumpButton)
         {
-            
             if (!onTheGround && checkWall.againstWallRight)
             {
                 WallJump(-1);
@@ -86,9 +114,14 @@ public class PlayerController : MonoBehaviour
                 Jump();
                 secondJumpAvailable = false;
             }
+            else if(onTheGround && verticalAxis<0f && checkGround.otherTag=="Platform")
+            {
+                disablePushBox();
+                leavePlatformFlagger = 1;
+            }
             else if (onTheGround)
             {
-                Jump();
+                JumpStart();
             }
         }
     }
@@ -156,31 +189,49 @@ public class PlayerController : MonoBehaviour
     }
 
     // Checks on other scripts that are constantly checking for collision. 
-    private void CheckContact()
+    private void CheckGround()
     {
-        onTheGround = checkGround.getIfOnTheGround();
+        onTheGround = checkGround.onTheGround;
 
-        if (!onTheGround && rigidBody2D.velocity.normalized.y<=0f)
+        if(!onTheGround)
         {
-            animator.SetBool("Falling", true);
-            animator.SetBool("Jumping", false);
+            if (rigidBody2D.velocity.normalized.y<0f)
+            {
+                animator.SetBool("Falling", true);
+                animator.SetBool("Jumping", false);
+            }
         }
 
         if (onTheGround)
         {
-            animator.SetBool("Jumping", false);
-            animator.SetBool("Falling", false);
-            secondJumpAvailable = true;
-            wallJumpAvailable = true;
+            if(checkGround.otherTag=="Platform")
+            {
+                
+            }
+            else if(checkGround.otherTag == "Ground")
+            {
+                animator.SetBool("Jumping", false);
+                animator.SetBool("Falling", false);
+                secondJumpAvailable = true;
+                wallJumpAvailable = true;
+            }
         }
+        
     }
 
     // Adds a vertical force to the player.
-    private void Jump()
+    private void JumpStart()
+    {
+        rigidBody2D.velocity = new Vector2(rigidBody2D.velocity.x, 0f);
+        animator.SetBool("JumpingStart", true);
+    }
+
+    public void Jump()
     {
         rigidBody2D.velocity = new Vector2(rigidBody2D.velocity.x, 0f);
         rigidBody2D.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-        checkGround.setIfOnTheGround(false);
+        checkGround.onTheGround = false;
+        animator.SetBool("JumpingStart", false);
         animator.SetBool("Jumping", true);
         animator.SetBool("Falling", false);
     }
@@ -190,11 +241,13 @@ public class PlayerController : MonoBehaviour
     {
         rigidBody2D.velocity = new Vector2(0f, 0f);
         rigidBody2D.AddForce(new Vector2(sign*wallJumpForce/1.5f, wallJumpForce/1f), ForceMode2D.Impulse);
-        checkGround.setIfOnTheGround(false);
+        checkGround.onTheGround = false;
         animator.SetBool("Jumping", true);
         animator.SetBool("Falling", false);
         FlipSprite(sign);
     }
+
+    
 
     // Checks if the HurtBox has collided with a HitBox from another Object.
     private void CheckHit()
@@ -238,5 +291,52 @@ public class PlayerController : MonoBehaviour
     public void StopHurt()
     {
         hurtBox.enabled = true;
+    }
+    
+    private void disablePushBox()
+    {
+        pushBox.enabled = false;
+    }
+
+    private void enablePushBox()
+    {
+        pushBox.enabled = true;
+    }
+
+    // Sets required variables to stop the attacking state.
+    public void StopAttack()
+    {
+        attackButton = false;
+    }
+
+    //...
+    public void ShootShuriken()
+    {
+        if(spriteRenderer.flipX == true)
+        {
+            Quaternion shurikenRotation = new Quaternion(0f, 0f, 0f, 0f);
+            shurikenRotation.eulerAngles = new Vector3(0f, 0f, 90f);
+            Vector2 plusVector = new Vector2(-0.35f, 0.14f);
+
+            GameObject shuriken = Instantiate(shurikenPrefab, rigidBody2D.position+plusVector, shurikenRotation);
+            Rigidbody2D shurikenRB = shuriken.GetComponent<Rigidbody2D>();
+            
+            Vector2 arrowDirection = new Vector2(-1f, 0f);
+            shurikenRB.AddForce(arrowDirection*shurikenSpeed, ForceMode2D.Impulse);
+        }
+
+        if(spriteRenderer.flipX == false)
+        {
+            Quaternion shurikenRotation = new Quaternion(0f, 0f, 0f, 0f);
+            shurikenRotation.eulerAngles = new Vector3(0f, 0f, 270);
+            Vector2 plusVector = new Vector2(0.35f, 0.14f);
+
+            GameObject arrow = Instantiate(shurikenPrefab, rigidBody2D.position+plusVector, shurikenRotation);
+            Rigidbody2D arrowRB = arrow.GetComponent<Rigidbody2D>();
+            
+            Vector2 arrowDirection = new Vector2(1f, 0f);
+            arrowRB.AddForce(arrowDirection*shurikenSpeed, ForceMode2D.Impulse);
+        }
+        
     }
 }
