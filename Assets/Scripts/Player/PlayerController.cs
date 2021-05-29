@@ -21,25 +21,27 @@ public class PlayerController : MonoBehaviour
     // VARIABLES
     public float maxHP = 5f;
     public float currentHP;
-    [SerializeField] private bool secondJumpAvailable;
-    [SerializeField] private bool wallJumpAvailable;
-    [SerializeField] private bool treeJumpAvailable;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
     [SerializeField] private float wallJumpForce;
     [SerializeField] private float shurikenSpeed;
-    [SerializeField] private bool onTheGround;
-    [SerializeField] private bool againstWall;
+    [SerializeField] private float treeJumpForce;
+    private bool secondJumpAvailable;
+    private bool wallJumpAvailable;
+    [SerializeField] private bool climbTreeAvailable;
+    private bool onTheGround;
+    private bool againstWall;
     [SerializeField] private bool overATree;
     [SerializeField] private bool climbingTree;
-    [SerializeField] private int leavePlatformFlagger;
+    [SerializeField] private bool attacking;
 
     // INPUT VARIABLES
     private float horizontalAxis;
     private float verticalAxis;
     private bool jumpButton;
     private bool hangButton;
-    private bool attackButton;
+    private bool rangedAttackButton;
+    private bool meleeAttackButton;
 
     // Awake is called when the script instance is being loaded.
     void Awake()
@@ -56,11 +58,11 @@ public class PlayerController : MonoBehaviour
         currentHP = maxHP;
         secondJumpAvailable = false;
         wallJumpAvailable = false;
-        treeJumpAvailable = false;
+        climbTreeAvailable = false;
         againstWall = false;
         overATree = false;
         climbingTree = false;
-        leavePlatformFlagger = 0;
+        attacking = false;
     }
 
     // FixedUpdate is called multiple times per frame.
@@ -68,7 +70,9 @@ public class PlayerController : MonoBehaviour
     {
         CheckHit();
         CheckGround();
-        Movement();
+
+        if(!attacking && !climbingTree)
+            CheckMovement();
     }
 
     // Update is called once per frame.
@@ -79,27 +83,47 @@ public class PlayerController : MonoBehaviour
         verticalAxis = Input.GetAxisRaw("Vertical");
         jumpButton = Input.GetButtonDown("Jump");
         hangButton = Input.GetButtonDown("Jump");
-        attackButton = Input.GetButtonDown("Attack");
+        rangedAttackButton = Input.GetButtonDown("Attack");
+        hangButton = Input.GetButtonDown("Hang");
 
         //Checks contact with enviroment elements 
         againstWall = checkWall.againstWallLeft || checkWall.againstWallRight;
         overATree = checkTree.overATree;
         //Checking the Ground is a separate check on "CheckGround()"
 
-        if(attackButton)
+        if(rangedAttackButton && onTheGround)
         {
+            attacking = true;
+            this.MovementOnAxis(0f);
             animator.SetTrigger("RangedAttack");
         }
 
         if(hangButton && overATree && !onTheGround)
         {
-            rigidBody2D.bodyType = RigidbodyType2D.Kinematic;
+            if(climbingTree)
+            {
+                rigidBody2D.gravityScale = 3f;
+                climbingTree = false;
+            }
+            else
+            {
+                rigidBody2D.velocity = new Vector2(0f, 0f);
+                rigidBody2D.gravityScale = 0f;
+                climbingTree = true;
+                climbTreeAvailable = false;
+            }
         }
 
         //Checking for the JumpButton is here instead of UpdateFixed, because it needs to check immediately
         if(jumpButton)
         {
-            if (!onTheGround && checkWall.againstWallRight)
+            if(climbingTree)
+            {
+                rigidBody2D.gravityScale = 3f;
+                climbingTree = false;
+                Jump();
+            }
+            else if (!onTheGround && checkWall.againstWallRight)
             {
                 WallJump(-1);
                 wallJumpAvailable = false;
@@ -114,20 +138,16 @@ public class PlayerController : MonoBehaviour
                 Jump();
                 secondJumpAvailable = false;
             }
-            else if(onTheGround && verticalAxis<0f && checkGround.otherTag=="Platform")
-            {
-                disablePushBox();
-                leavePlatformFlagger = 1;
-            }
             else if (onTheGround)
             {
                 JumpStart();
             }
+            
         }
     }
 
     // Checks Input, calls for Movement, and sets facing side.
-    private void Movement()
+    private void CheckMovement()
     {
         // If Left or Right is pressed.
         if (horizontalAxis > 0.5f || horizontalAxis < -0.5f)
@@ -156,12 +176,6 @@ public class PlayerController : MonoBehaviour
     private void MovementOnAxis(float moveHorizontal)
     {
         float movementDirection = moveHorizontal * moveSpeed;
-        
-        //if(againstWall)
-        //{
-        //    rigidBody2D.velocity = new Vector2(movementDirection, rigidBody2D.velocity.y/1.25f);
-        //}
-        //else if
 
         if(wallJumpAvailable)
         {
@@ -206,7 +220,11 @@ public class PlayerController : MonoBehaviour
         {
             if(checkGround.otherTag=="Platform")
             {
-                
+                animator.SetBool("Jumping", false);
+                animator.SetBool("Falling", false);
+                secondJumpAvailable = true;
+                wallJumpAvailable = true;
+                climbTreeAvailable = true;
             }
             else if(checkGround.otherTag == "Ground")
             {
@@ -214,6 +232,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("Falling", false);
                 secondJumpAvailable = true;
                 wallJumpAvailable = true;
+                climbTreeAvailable = true;
             }
         }
         
@@ -247,7 +266,14 @@ public class PlayerController : MonoBehaviour
         FlipSprite(sign);
     }
 
-    
+    public void TreeJump()
+    {
+        rigidBody2D.velocity = new Vector2(rigidBody2D.velocity.x, 0f);
+        rigidBody2D.AddForce(new Vector2(0f, treeJumpForce), ForceMode2D.Impulse);
+        checkGround.onTheGround = false;
+        animator.SetBool("Jumping", true);
+        animator.SetBool("Falling", false);
+    }
 
     // Checks if the HurtBox has collided with a HitBox from another Object.
     private void CheckHit()
@@ -306,17 +332,19 @@ public class PlayerController : MonoBehaviour
     // Sets required variables to stop the attacking state.
     public void StopAttack()
     {
-        attackButton = false;
+        rangedAttackButton = false;
+        attacking = false;
     }
 
-    //...
+    // Called from the Animation.
+    // Instantiates a PlayerShuriken and shoots it on the direction the player is facing.
     public void ShootShuriken()
     {
         if(spriteRenderer.flipX == true)
         {
             Quaternion shurikenRotation = new Quaternion(0f, 0f, 0f, 0f);
             shurikenRotation.eulerAngles = new Vector3(0f, 0f, 90f);
-            Vector2 plusVector = new Vector2(-0.35f, 0.14f);
+            Vector2 plusVector = new Vector2(-0.3f, 0.14f);
 
             GameObject shuriken = Instantiate(shurikenPrefab, rigidBody2D.position+plusVector, shurikenRotation);
             Rigidbody2D shurikenRB = shuriken.GetComponent<Rigidbody2D>();
@@ -329,7 +357,7 @@ public class PlayerController : MonoBehaviour
         {
             Quaternion shurikenRotation = new Quaternion(0f, 0f, 0f, 0f);
             shurikenRotation.eulerAngles = new Vector3(0f, 0f, 270);
-            Vector2 plusVector = new Vector2(0.35f, 0.14f);
+            Vector2 plusVector = new Vector2(0.3f, 0.14f);
 
             GameObject arrow = Instantiate(shurikenPrefab, rigidBody2D.position+plusVector, shurikenRotation);
             Rigidbody2D arrowRB = arrow.GetComponent<Rigidbody2D>();

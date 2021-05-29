@@ -45,9 +45,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.1}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.05
+  m_Radius: 0.1
 --- !u!114 &8500739149861605977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 4721134543759675932}
   - component: {fileID: 4721134543759675933}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PlayerNinja
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -181,18 +181,15 @@ MonoBehaviour:
   shurikenPrefab: {fileID: 3692352562470081075, guid: eec4354bdcd3b4f44ac6f78198595cac, type: 3}
   maxHP: 5
   currentHP: 0
-  secondJumpAvailable: 0
-  wallJumpAvailable: 0
-  treeJumpAvailable: 0
-  moveSpeed: 5
+  moveSpeed: 4
   jumpForce: 10
   wallJumpForce: 10
-  shurikenSpeed: 5
-  onTheGround: 0
-  againstWall: 0
+  shurikenSpeed: 6
+  treeJumpForce: 13
+  climbTreeAvailable: 0
   overATree: 0
   climbingTree: 0
-  leavePlatformFlagger: 0
+  attacking: 0
 --- !u!95 &4721134543759675935
 Animator:
   serializedVersion: 3
@@ -329,7 +326,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.075}
+  m_Offset: {x: 0, y: -0.074}
   m_Size: {x: 0.15, y: 0.4}
   m_Direction: 0
 --- !u!1 &4721134544347301903

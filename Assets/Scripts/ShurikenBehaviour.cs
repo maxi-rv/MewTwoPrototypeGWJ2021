@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShurikenBehaviour : MonoBehaviour
 {
     public float rotationSpeed;
+    public float destructionTime;
     private Collider2D hitBox;
 
     // Start is called before the first frame update
@@ -14,7 +15,7 @@ public class ShurikenBehaviour : MonoBehaviour
         hitBox = gameObject.GetComponent<Collider2D>();
 
         //Despues de cierto tiempo, la flecha se elimina.
-        Invoke("DestroyShuriken", 0.6f);
+        Invoke("DestroyShuriken", destructionTime);
     }
 
     // Update is called once per frame

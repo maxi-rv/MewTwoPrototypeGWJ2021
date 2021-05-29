@@ -20,17 +20,15 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -6058049568502962705, guid: 252062758e13f604fb6ba484f0340d06, type: 3}
+      value: {fileID: 6718656177532549394, guid: 60ea0c2e6366ff043a0f64636fbaa8e7, type: 3}
     - time: 0.11111111
-      value: {fileID: 6890286683135216401, guid: 252062758e13f604fb6ba484f0340d06, type: 3}
+      value: {fileID: 7132573674499423586, guid: 60ea0c2e6366ff043a0f64636fbaa8e7, type: 3}
     - time: 0.22222222
-      value: {fileID: -56321692767658704, guid: 252062758e13f604fb6ba484f0340d06, type: 3}
+      value: {fileID: -7767960173075409222, guid: 60ea0c2e6366ff043a0f64636fbaa8e7, type: 3}
     - time: 0.33333334
-      value: {fileID: 144065419153201402, guid: 252062758e13f604fb6ba484f0340d06, type: 3}
+      value: {fileID: 6330821303352641694, guid: 60ea0c2e6366ff043a0f64636fbaa8e7, type: 3}
     - time: 0.44444445
-      value: {fileID: -9179473628861869812, guid: 252062758e13f604fb6ba484f0340d06, type: 3}
-    - time: 0.5555556
-      value: {fileID: -4148663393742789875, guid: 252062758e13f604fb6ba484f0340d06, type: 3}
+      value: {fileID: -5733788973418718758, guid: 60ea0c2e6366ff043a0f64636fbaa8e7, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -50,23 +48,22 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -6058049568502962705, guid: 252062758e13f604fb6ba484f0340d06, type: 3}
-    - {fileID: 6890286683135216401, guid: 252062758e13f604fb6ba484f0340d06, type: 3}
-    - {fileID: -56321692767658704, guid: 252062758e13f604fb6ba484f0340d06, type: 3}
-    - {fileID: 144065419153201402, guid: 252062758e13f604fb6ba484f0340d06, type: 3}
-    - {fileID: -9179473628861869812, guid: 252062758e13f604fb6ba484f0340d06, type: 3}
-    - {fileID: -4148663393742789875, guid: 252062758e13f604fb6ba484f0340d06, type: 3}
+    - {fileID: 6718656177532549394, guid: 60ea0c2e6366ff043a0f64636fbaa8e7, type: 3}
+    - {fileID: 7132573674499423586, guid: 60ea0c2e6366ff043a0f64636fbaa8e7, type: 3}
+    - {fileID: -7767960173075409222, guid: 60ea0c2e6366ff043a0f64636fbaa8e7, type: 3}
+    - {fileID: 6330821303352641694, guid: 60ea0c2e6366ff043a0f64636fbaa8e7, type: 3}
+    - {fileID: -5733788973418718758, guid: 60ea0c2e6366ff043a0f64636fbaa8e7, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.6666667
+    m_StopTime: 0.5555556
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 0
+    m_LoopTime: 1
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
@@ -81,14 +78,14 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.33333334
+  - time: 0.22222222
     functionName: ShootShuriken
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.5555556
+  - time: 0.44444445
     functionName: StopAttack
     data: 
     objectReferenceParameter: {fileID: 0}
