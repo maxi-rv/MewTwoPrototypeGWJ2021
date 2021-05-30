@@ -239,7 +239,6 @@ public class PlayerController : MonoBehaviour
         
         if(againstWall)
         {
-            rigidBody2D.gravityScale = 1f;
             secondJumpAvailable = true;
         }
     }
