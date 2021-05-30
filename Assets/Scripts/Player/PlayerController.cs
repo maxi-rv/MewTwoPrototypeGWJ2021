@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CheckTree checkTree;
     [SerializeField] private Material matDefault;
     [SerializeField] private Material matWhite;
-    [SerializeField] private GameObject shurikenPrefab;
+    [SerializeField] private ShurikenBehaviour shurikenPrefab;
     
     // VARIABLES
     public float maxHP = 5f;
@@ -83,7 +83,8 @@ public class PlayerController : MonoBehaviour
         verticalAxis = Input.GetAxisRaw("Vertical");
         jumpButton = Input.GetButtonDown("Jump");
         hangButton = Input.GetButtonDown("Jump");
-        rangedAttackButton = Input.GetButtonDown("Attack");
+        rangedAttackButton = Input.GetButtonDown("AttackRange");
+        meleeAttackButton = Input.GetButtonDown("AttackMelee");
         hangButton = Input.GetButtonDown("Hang");
 
         //Checks contact with enviroment elements 
@@ -95,7 +96,14 @@ public class PlayerController : MonoBehaviour
         {
             attacking = true;
             this.MovementOnAxis(0f);
-            animator.SetTrigger("RangedAttack");
+            animator.SetTrigger("RangedAttacking");
+        }
+
+        if(meleeAttackButton && onTheGround)
+        {
+            attacking = true;
+            this.MovementOnAxis(0f);
+            animator.SetTrigger("MeleeAttacking");
         }
 
         if(hangButton && overATree && !onTheGround)
@@ -104,6 +112,7 @@ public class PlayerController : MonoBehaviour
             {
                 rigidBody2D.gravityScale = 3f;
                 climbingTree = false;
+                animator.SetBool("Hanging", false);
             }
             else
             {
@@ -111,17 +120,23 @@ public class PlayerController : MonoBehaviour
                 rigidBody2D.gravityScale = 0f;
                 climbingTree = true;
                 climbTreeAvailable = false;
+                animator.SetBool("Hanging", true);
             }
         }
 
         //Checking for the JumpButton is here instead of UpdateFixed, because it needs to check immediately
         if(jumpButton)
         {
+            rigidBody2D.gravityScale = 3f;
+
             if(climbingTree)
             {
-                rigidBody2D.gravityScale = 3f;
                 climbingTree = false;
-                Jump();
+                TreeJump();
+            }  
+            else if (onTheGround)
+            {
+                JumpStart();
             }
             else if (!onTheGround && checkWall.againstWallRight)
             {
@@ -138,11 +153,6 @@ public class PlayerController : MonoBehaviour
                 Jump();
                 secondJumpAvailable = false;
             }
-            else if (onTheGround)
-            {
-                JumpStart();
-            }
-            
         }
     }
 
@@ -209,33 +219,29 @@ public class PlayerController : MonoBehaviour
 
         if(!onTheGround)
         {
-            if (rigidBody2D.velocity.normalized.y<0f)
+            //FALLING!
+            if (rigidBody2D.velocity.normalized.y < 0f)
             {
                 animator.SetBool("Falling", true);
                 animator.SetBool("Jumping", false);
+                rigidBody2D.gravityScale = 1f;
             }
         }
-
-        if (onTheGround)
+        else
         {
-            if(checkGround.otherTag=="Platform")
-            {
-                animator.SetBool("Jumping", false);
-                animator.SetBool("Falling", false);
-                secondJumpAvailable = true;
-                wallJumpAvailable = true;
-                climbTreeAvailable = true;
-            }
-            else if(checkGround.otherTag == "Ground")
-            {
-                animator.SetBool("Jumping", false);
-                animator.SetBool("Falling", false);
-                secondJumpAvailable = true;
-                wallJumpAvailable = true;
-                climbTreeAvailable = true;
-            }
+            animator.SetBool("Jumping", false);
+            animator.SetBool("Falling", false);
+            secondJumpAvailable = true;
+            wallJumpAvailable = true;
+            climbTreeAvailable = true;
+            rigidBody2D.gravityScale = 3f;
         }
         
+        if(againstWall)
+        {
+            rigidBody2D.gravityScale = 1f;
+            secondJumpAvailable = true;
+        }
     }
 
     // Adds a vertical force to the player.
@@ -273,6 +279,7 @@ public class PlayerController : MonoBehaviour
         checkGround.onTheGround = false;
         animator.SetBool("Jumping", true);
         animator.SetBool("Falling", false);
+        animator.SetBool("Hanging", false);
     }
 
     // Checks if the HurtBox has collided with a HitBox from another Object.
@@ -333,6 +340,7 @@ public class PlayerController : MonoBehaviour
     public void StopAttack()
     {
         rangedAttackButton = false;
+        meleeAttackButton = false;
         attacking = false;
     }
 
@@ -340,30 +348,35 @@ public class PlayerController : MonoBehaviour
     // Instantiates a PlayerShuriken and shoots it on the direction the player is facing.
     public void ShootShuriken()
     {
+        //DISPARA A LA IZQUIERDA
         if(spriteRenderer.flipX == true)
         {
             Quaternion shurikenRotation = new Quaternion(0f, 0f, 0f, 0f);
             shurikenRotation.eulerAngles = new Vector3(0f, 0f, 90f);
             Vector2 plusVector = new Vector2(-0.3f, 0.14f);
 
-            GameObject shuriken = Instantiate(shurikenPrefab, rigidBody2D.position+plusVector, shurikenRotation);
-            Rigidbody2D shurikenRB = shuriken.GetComponent<Rigidbody2D>();
-            
-            Vector2 arrowDirection = new Vector2(-1f, 0f);
-            shurikenRB.AddForce(arrowDirection*shurikenSpeed, ForceMode2D.Impulse);
+            ShurikenBehaviour shuriken = Instantiate(shurikenPrefab, rigidBody2D.position+plusVector, shurikenRotation);
+            //Rigidbody2D shurikenRB = shuriken.GetComponent<Rigidbody2D>();
+            //shurikenRB.AddForce(arrowDirection*shurikenSpeed, ForceMode2D.Impulse);
+
+            shuriken.velocity = new Vector2(-1f, 0f);
+            shuriken.shurikenSpeed = shurikenSpeed;
         }
 
+        //DISPARA A LA DERECHA
         if(spriteRenderer.flipX == false)
         {
             Quaternion shurikenRotation = new Quaternion(0f, 0f, 0f, 0f);
-            shurikenRotation.eulerAngles = new Vector3(0f, 0f, 270);
+            shurikenRotation.eulerAngles = new Vector3(0f, 0f, 270f);
             Vector2 plusVector = new Vector2(0.3f, 0.14f);
 
-            GameObject arrow = Instantiate(shurikenPrefab, rigidBody2D.position+plusVector, shurikenRotation);
-            Rigidbody2D arrowRB = arrow.GetComponent<Rigidbody2D>();
-            
-            Vector2 arrowDirection = new Vector2(1f, 0f);
-            arrowRB.AddForce(arrowDirection*shurikenSpeed, ForceMode2D.Impulse);
+            ShurikenBehaviour shuriken = Instantiate(shurikenPrefab, rigidBody2D.position+plusVector, shurikenRotation);
+
+            //Rigidbody2D arrowRB = arrow.GetComponent<Rigidbody2D>();
+            //arrowRB.AddForce(arrowDirection*shurikenSpeed, ForceMode2D.Impulse);
+
+            shuriken.velocity = new Vector2(1f, 0f);
+            shuriken.shurikenSpeed = shurikenSpeed;
         }
         
     }

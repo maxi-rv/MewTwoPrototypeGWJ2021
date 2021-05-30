@@ -6,6 +6,8 @@ public class ShurikenBehaviour : MonoBehaviour
 {
     public float rotationSpeed;
     public float destructionTime;
+    public float shurikenSpeed;
+    public Vector2 velocity;
     private Collider2D hitBox;
 
     // Start is called before the first frame update
@@ -19,9 +21,10 @@ public class ShurikenBehaviour : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         transform.Rotate(0f, 0f, rotationSpeed);
+        transform.Translate(velocity*Time.deltaTime*shurikenSpeed, Space.World);
     }
 
     //Sent when ANOTHER object trigger collider enters a trigger collider attached to this object.
