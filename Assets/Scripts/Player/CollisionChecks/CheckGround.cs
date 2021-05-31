@@ -28,7 +28,7 @@ public class CheckGround : MonoBehaviour
     void OnTriggerExit2D(Collider2D other)
     {
         // Compares the hitbox tag with its own tag.
-        if(other.gameObject.CompareTag("Ground"))
+        if(other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Platform"))
         {
             onTheGround = false;
         }

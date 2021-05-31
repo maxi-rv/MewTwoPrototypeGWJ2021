@@ -92,18 +92,20 @@ public class PlayerController : MonoBehaviour
         overATree = checkTree.overATree;
         //Checking the Ground is a separate check on "CheckGround()"
 
-        if(rangedAttackButton && onTheGround)
+        if(rangedAttackButton && onTheGround && !attacking)
         {
             attacking = true;
             this.MovementOnAxis(0f);
             animator.SetTrigger("RangedAttacking");
         }
 
-        if(meleeAttackButton && onTheGround)
+        if(meleeAttackButton && onTheGround && !attacking)
         {
             attacking = true;
             this.MovementOnAxis(0f);
             animator.SetTrigger("MeleeAttacking");
+
+            
         }
 
         if(hangButton && overATree && !onTheGround)
@@ -219,12 +221,12 @@ public class PlayerController : MonoBehaviour
 
         if(!onTheGround)
         {
-            //FALLING!
+            //AND FALLING!
             if (rigidBody2D.velocity.normalized.y < 0f)
             {
                 animator.SetBool("Falling", true);
                 animator.SetBool("Jumping", false);
-                rigidBody2D.gravityScale = 1f;
+                rigidBody2D.gravityScale = 2f;
             }
         }
         else
@@ -235,11 +237,6 @@ public class PlayerController : MonoBehaviour
             wallJumpAvailable = true;
             climbTreeAvailable = true;
             rigidBody2D.gravityScale = 3f;
-        }
-        
-        if(againstWall)
-        {
-            secondJumpAvailable = true;
         }
     }
 
@@ -255,6 +252,7 @@ public class PlayerController : MonoBehaviour
         rigidBody2D.velocity = new Vector2(rigidBody2D.velocity.x, 0f);
         rigidBody2D.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         checkGround.onTheGround = false;
+        onTheGround = false;
         animator.SetBool("JumpingStart", false);
         animator.SetBool("Jumping", true);
         animator.SetBool("Falling", false);
@@ -266,6 +264,7 @@ public class PlayerController : MonoBehaviour
         rigidBody2D.velocity = new Vector2(0f, 0f);
         rigidBody2D.AddForce(new Vector2(sign*wallJumpForce/1.5f, wallJumpForce/1f), ForceMode2D.Impulse);
         checkGround.onTheGround = false;
+        onTheGround = false;
         animator.SetBool("Jumping", true);
         animator.SetBool("Falling", false);
         FlipSprite(sign);
@@ -276,6 +275,7 @@ public class PlayerController : MonoBehaviour
         rigidBody2D.velocity = new Vector2(rigidBody2D.velocity.x, 0f);
         rigidBody2D.AddForce(new Vector2(0f, treeJumpForce), ForceMode2D.Impulse);
         checkGround.onTheGround = false;
+        onTheGround = false;
         animator.SetBool("Jumping", true);
         animator.SetBool("Falling", false);
         animator.SetBool("Hanging", false);
@@ -361,9 +361,7 @@ public class PlayerController : MonoBehaviour
             shuriken.velocity = new Vector2(-1f, 0f);
             shuriken.shurikenSpeed = shurikenSpeed;
         }
-
-        //DISPARA A LA DERECHA
-        if(spriteRenderer.flipX == false)
+        else //DISPARA A LA DERECHA
         {
             Quaternion shurikenRotation = new Quaternion(0f, 0f, 0f, 0f);
             shurikenRotation.eulerAngles = new Vector3(0f, 0f, 270f);
