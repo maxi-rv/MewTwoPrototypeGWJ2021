@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 242261280403928411}
   - component: {fileID: 906260074872174523}
   - component: {fileID: 7683043237796721531}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Rama-der-1-B
   m_TagString: Platform
   m_Icon: {fileID: 0}

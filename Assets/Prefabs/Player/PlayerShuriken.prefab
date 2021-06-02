@@ -71,10 +71,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1076162575
+  m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 615629efd5f183b49b4d10345e1558da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c8fbecdf2fb201744bff4222b9b213e0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,7 +100,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.015625
+  m_Radius: 0.025
 --- !u!114 &3692352562470081074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a02f76564beb46342ac96934e211586b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 15
-  destructionTime: 0.6
-  shurikenSpeed: 6
+  rotationSpeed: 30
+  destructionTime: 0.75
+  shurikenSpeed: 5
   velocity: {x: 0, y: 0}

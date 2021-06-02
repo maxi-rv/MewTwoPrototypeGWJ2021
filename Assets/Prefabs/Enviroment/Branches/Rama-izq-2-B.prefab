@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 710354040353863928}
   - component: {fileID: 3254765680452558504}
   - component: {fileID: 501933154907396181}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Rama-izq-2-B
   m_TagString: Platform
   m_Icon: {fileID: 0}

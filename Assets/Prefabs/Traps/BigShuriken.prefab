@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3518500846976839965}
   - component: {fileID: 3518500846976839964}
   - component: {fileID: 3518500846976839967}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: BigShuriken
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -100,6 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 15
   destructionTime: 2
+  shurikenSpeed: 0
+  velocity: {x: 0, y: 0}
 --- !u!50 &3518500846976839964
 Rigidbody2D:
   serializedVersion: 4

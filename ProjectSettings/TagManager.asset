@@ -9,6 +9,8 @@ TagManager:
   - Wall
   - Tree
   - Platform
+  - Food
+  - Ammo
   layers:
   - Default
   - TransparentFX
@@ -17,12 +19,12 @@ TagManager:
   - Water
   - UI
   - 
-  - PushBox
+  - PushBox Player
   - HurtBox
   - HitBox
-  - 
-  - 
-  - 
+  - PushBox Enemy
+  - PushBox Collectable
+  - PushBox Enviroment
   - 
   - 
   - 

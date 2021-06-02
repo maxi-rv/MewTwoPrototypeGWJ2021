@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2034692514847059001}
   - component: {fileID: 4321868362885079382}
   - component: {fileID: 5653756372534492068}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Tronco-3
   m_TagString: Tree
   m_Icon: {fileID: 0}

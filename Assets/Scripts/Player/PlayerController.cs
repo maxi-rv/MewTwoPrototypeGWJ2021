@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CheckHit checkHit;
     [SerializeField] private CheckGround checkGround;
     [SerializeField] private CheckWall checkWall;
+    [SerializeField] private CheckCollectables checkCollectables;
     [SerializeField] private CheckTree checkTree;
     [SerializeField] private Material matDefault;
     [SerializeField] private Material matWhite;
@@ -75,8 +76,9 @@ public class PlayerController : MonoBehaviour
     {
         CheckHit();
         CheckGround();
+        CheckCollectables();
 
-        if(!cantMove && !attacking && !climbingTree)
+        if(!cantMove && (!attacking && onTheGround) && !climbingTree)
             CheckMovement();
         
     }
@@ -104,20 +106,31 @@ public class PlayerController : MonoBehaviour
 
     private void CheckActions()
     {
-        if(rangedAttackButton && !attacking && shurikenCant>0)
+        if(!attacking && (rangedAttackButton || meleeAttackButton))
         {
-            shurikenCant--;
-            attacking = true;
-            this.MovementOnAxis(0f);
-            animator.SetTrigger("RangedAttacking");
-        }
+            if(climbingTree)
+            {
+                rigidBody2D.gravityScale = 3f;
+                climbingTree = false;
+                animator.SetBool("Hanging", false);
+            }
 
-        if(meleeAttackButton && onTheGround && !attacking)
-        {
-            attacking = true;
-            this.MovementOnAxis(0f);
-            animator.SetTrigger("MeleeAttacking");
+            if(onTheGround)
+                this.MovementOnAxis(0f);
+            
+            if(rangedAttackButton && shurikenCant>0)
+            {
+                shurikenCant--;
+                attacking = true;
+                animator.SetTrigger("RangedAttacking");
+            }
+            else if(meleeAttackButton && onTheGround)
+            {
+                attacking = true;
+                animator.SetTrigger("MeleeAttacking");
+            }
         }
+        
 
         if(hangButton && overATree && !onTheGround && climbTreeAvailable)
         {
@@ -168,8 +181,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
-
 
     // Checks Input, calls for Movement, and sets facing side.
     private void CheckMovement()
@@ -250,6 +261,24 @@ public class PlayerController : MonoBehaviour
             wallJumpAvailable = true;
             climbTreeAvailable = true;
             rigidBody2D.gravityScale = 3f;
+        }
+    }
+
+    private void CheckCollectables()
+    {
+        if(checkCollectables.foundSomething)
+        {
+            if(checkCollectables.otherTag == "Food")
+            {
+                if(currentHP<maxHP)
+                    currentHP++;
+            }
+            else if(checkCollectables.otherTag == "Ammo")
+            {
+                shurikenCant++;
+            }
+
+            checkCollectables.foundSomething = false;
         }
     }
 
@@ -397,8 +426,6 @@ public class PlayerController : MonoBehaviour
             Vector2 plusVector = new Vector2(-0.3f, 0.14f);
 
             ShurikenBehaviour shuriken = Instantiate(shurikenPrefab, rigidBody2D.position+plusVector, shurikenRotation);
-            //Rigidbody2D shurikenRB = shuriken.GetComponent<Rigidbody2D>();
-            //shurikenRB.AddForce(arrowDirection*shurikenSpeed, ForceMode2D.Impulse);
 
             shuriken.velocity = new Vector2(-1f, 0f);
             shuriken.shurikenSpeed = shurikenSpeed;
@@ -410,9 +437,6 @@ public class PlayerController : MonoBehaviour
             Vector2 plusVector = new Vector2(0.3f, 0.14f);
 
             ShurikenBehaviour shuriken = Instantiate(shurikenPrefab, rigidBody2D.position+plusVector, shurikenRotation);
-
-            //Rigidbody2D arrowRB = arrow.GetComponent<Rigidbody2D>();
-            //arrowRB.AddForce(arrowDirection*shurikenSpeed, ForceMode2D.Impulse);
 
             shuriken.velocity = new Vector2(1f, 0f);
             shuriken.shurikenSpeed = shurikenSpeed;
