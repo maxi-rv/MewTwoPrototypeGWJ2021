@@ -18,7 +18,7 @@ public class GameController : MonoBehaviour
     private GameObject playerInstance;  
     private string currentSceneName;
     private bool onPlayingLevel;
-    private bool playerDestroyed;
+    private bool playerIsDead;
 
     void Awake()
     {
@@ -32,8 +32,8 @@ public class GameController : MonoBehaviour
         
         DontDestroyOnLoad(gameObject);
 
-        this.loadScene("LevelTest");
-        this.instantiatePlayer();
+        onPlayingLevel = false;
+        uiController.showStartMessage();
     }
 
     void Start() 
@@ -45,18 +45,53 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        uiController.currentHP = playerController.currentHP;
+        //Press Enter to Start
+        if(Input.GetKey(KeyCode.Return) && !onPlayingLevel)
+        {
+            //Loads first Scene
+            currentSceneName = "LevelTest";
+            loadScene(currentSceneName);
+            onPlayingLevel = true;
 
+            //Instantiates player
+            instantiatePlayer();
+
+            //Updates HUD
+            uiController.disableMessage();
+            uiController.activateBar();
+            uiController.currentHP = playerController.currentHP;
+            uiController.enableShurikenCounter();
+            uiController.setShurikenCounter(playerController.shurikenCant);
+        }
+
+        //While playing a level
+        if(onPlayingLevel)
+        {
+            uiController.currentHP = playerController.currentHP;
+            uiController.setShurikenCounter(playerController.shurikenCant);
+
+            //Player Dies
             if(playerController.currentHP <= 0)
             {
-                if (!playerDestroyed)
+                if (playerIsDead && Input.GetKey(KeyCode.Return))
                 {
-                    uiController.currentHP = playerController.currentHP;
+                    uiController.disableMessage();
                     destroyPlayer();
                     reloadScene(currentSceneName);
                     instantiatePlayer();
                 }
+                else
+                {
+                    uiController.showRetryMessage();
+                    playerIsDead = true;
+                }
             }
+        }
+        else if (!onPlayingLevel && Input.GetKey(KeyCode.Return))
+        {
+            this.loadScene("LevelTest");
+            this.instantiatePlayer();
+        }     
     }
 
     private void instantiatePlayer()
@@ -72,14 +107,13 @@ public class GameController : MonoBehaviour
         uiController.maxHP = playerController.maxHP;
         uiController.currentHP = playerController.currentHP;
         uiController.activateBar();
-        playerDestroyed = false;
+        playerIsDead = false;
     }
 
     private void destroyPlayer()
     {
         cameraController.targets.Remove(playerInstance.transform);
         GameObject.Destroy(playerController.gameObject);
-        playerDestroyed = true;
     }
 
     private void loadScene(string scene)

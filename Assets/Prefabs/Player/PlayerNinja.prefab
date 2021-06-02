@@ -181,15 +181,18 @@ MonoBehaviour:
   shurikenPrefab: {fileID: 3692352562470081074, guid: eec4354bdcd3b4f44ac6f78198595cac, type: 3}
   maxHP: 5
   currentHP: 0
+  shurikenCant: 5
   moveSpeed: 4
   jumpForce: 10
   wallJumpForce: 10
   shurikenSpeed: 6
   treeJumpForce: 13
+  hurtForce: 4
   climbTreeAvailable: 0
   overATree: 0
   climbingTree: 0
   attacking: 0
+  cantMove: 0
 --- !u!95 &4721134543759675935
 Animator:
   serializedVersion: 3

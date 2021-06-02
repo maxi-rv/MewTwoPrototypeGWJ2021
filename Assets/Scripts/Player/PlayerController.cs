@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,11 +22,13 @@ public class PlayerController : MonoBehaviour
     // VARIABLES
     public float maxHP = 5f;
     public float currentHP;
+    public int shurikenCant;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
     [SerializeField] private float wallJumpForce;
     [SerializeField] private float shurikenSpeed;
     [SerializeField] private float treeJumpForce;
+    [SerializeField] private float hurtForce;
     private bool secondJumpAvailable;
     private bool wallJumpAvailable;
     [SerializeField] private bool climbTreeAvailable;
@@ -34,6 +37,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool overATree;
     [SerializeField] private bool climbingTree;
     [SerializeField] private bool attacking;
+    [SerializeField] private bool cantMove;
 
     // INPUT VARIABLES
     private float horizontalAxis;
@@ -63,6 +67,7 @@ public class PlayerController : MonoBehaviour
         overATree = false;
         climbingTree = false;
         attacking = false;
+        cantMove = false;
     }
 
     // FixedUpdate is called multiple times per frame.
@@ -71,8 +76,9 @@ public class PlayerController : MonoBehaviour
         CheckHit();
         CheckGround();
 
-        if(!attacking && !climbingTree)
+        if(!cantMove && !attacking && !climbingTree)
             CheckMovement();
+        
     }
 
     // Update is called once per frame.
@@ -92,8 +98,15 @@ public class PlayerController : MonoBehaviour
         overATree = checkTree.overATree;
         //Checking the Ground is a separate check on "CheckGround()"
 
-        if(rangedAttackButton && onTheGround && !attacking)
+        if(!cantMove)
+            CheckActions();
+    }
+
+    private void CheckActions()
+    {
+        if(rangedAttackButton && !attacking && shurikenCant>0)
         {
+            shurikenCant--;
             attacking = true;
             this.MovementOnAxis(0f);
             animator.SetTrigger("RangedAttacking");
@@ -104,11 +117,9 @@ public class PlayerController : MonoBehaviour
             attacking = true;
             this.MovementOnAxis(0f);
             animator.SetTrigger("MeleeAttacking");
-
-            
         }
 
-        if(hangButton && overATree && !onTheGround)
+        if(hangButton && overATree && !onTheGround && climbTreeAvailable)
         {
             if(climbingTree)
             {
@@ -157,6 +168,8 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+
 
     // Checks Input, calls for Movement, and sets facing side.
     private void CheckMovement()
@@ -294,19 +307,43 @@ public class PlayerController : MonoBehaviour
     private void GetHurt()
     {
         checkHit.isHurt = false;
-        hurtBox.enabled = false;
+        disableHurtBox();
         currentHP--;
+        cantMove = true;
 
-        // Make a knockback or some hurting effect!!!
-        FlashWhite();
-        Invoke("FlashBack", 0.1f);
-        Invoke("FlashWhite", 0.2f);
-        Invoke("FlashBack", 0.3f);
-        Invoke("FlashWhite", 0.4f);
-        Invoke("FlashBack", 0.5f);
-        Invoke("FlashWhite", 0.6f);
-        Invoke("FlashBack", 0.7f);
-        Invoke("StopHurt", 0.8f);
+        if(currentHP>0)
+        {
+            cantMove = true;
+            animator.SetTrigger("Damaged");
+            FlashWhite();
+            Invoke("FlashBack", 0.1f);
+            Invoke("FlashWhite", 0.2f);
+            Invoke("FlashBack", 0.3f);
+            Invoke("FlashWhite", 0.4f);
+            Invoke("FlashBack", 0.5f);
+            Invoke("FlashWhite", 0.6f);
+            Invoke("FlashBack", 0.7f);
+            Invoke("FlashWhite", 0.8f);
+            Invoke("FlashBack", 0.9f);
+            Invoke("enableHurtBox", 1f);
+        }
+        else
+        {
+            animator.SetTrigger("Damaged");
+            animator.SetBool("Dead", true);
+        }
+
+        rigidBody2D.velocity = new Vector2(0f, 0f);
+        if(spriteRenderer.flipX == true) //Mirando a la Izquierda
+        {
+            rigidBody2D.AddForce(new Vector2(hurtForce, hurtForce), ForceMode2D.Impulse);
+        }
+        else //Mirando a la Derecha
+        {
+            rigidBody2D.AddForce(new Vector2(-hurtForce, hurtForce), ForceMode2D.Impulse);
+        }
+        checkGround.onTheGround = false;
+        onTheGround = false;
     }
 
     private void FlashWhite()
@@ -322,17 +359,23 @@ public class PlayerController : MonoBehaviour
     // Sets required variables to stop the hurting state.
     public void StopHurt()
     {
-        hurtBox.enabled = true;
-    }
-    
-    private void disablePushBox()
-    {
-        pushBox.enabled = false;
+        rigidBody2D.velocity = new Vector2(0f, 0f);
+        cantMove = false;
     }
 
-    private void enablePushBox()
+    public void StopDead()
     {
-        pushBox.enabled = true;
+        rigidBody2D.velocity = new Vector2(0f, 0f);
+    }
+    
+    private void disableHurtBox()
+    {
+        hurtBox.enabled = false;
+    }
+
+    private void enableHurtBox()
+    {
+        hurtBox.enabled = true;
     }
 
     // Sets required variables to stop the attacking state.
@@ -347,8 +390,7 @@ public class PlayerController : MonoBehaviour
     // Instantiates a PlayerShuriken and shoots it on the direction the player is facing.
     public void ShootShuriken()
     {
-        //DISPARA A LA IZQUIERDA
-        if(spriteRenderer.flipX == true)
+        if(spriteRenderer.flipX == true) //DISPARA A LA IZQUIERDA
         {
             Quaternion shurikenRotation = new Quaternion(0f, 0f, 0f, 0f);
             shurikenRotation.eulerAngles = new Vector3(0f, 0f, 90f);

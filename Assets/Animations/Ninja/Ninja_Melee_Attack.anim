@@ -76,6 +76,8 @@ AnimationClip:
       value: {fileID: 3596144640975472324, guid: 29fc1aee10994fe4cb6209d110166f4b, type: 3}
     - time: 0.5625
       value: {fileID: 5759659553752237216, guid: 29fc1aee10994fe4cb6209d110166f4b, type: 3}
+    - time: 0.625
+      value: {fileID: 5759659553752237216, guid: 29fc1aee10994fe4cb6209d110166f4b, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -112,12 +114,13 @@ AnimationClip:
     - {fileID: 4808284078249688090, guid: 29fc1aee10994fe4cb6209d110166f4b, type: 3}
     - {fileID: 3596144640975472324, guid: 29fc1aee10994fe4cb6209d110166f4b, type: 3}
     - {fileID: 5759659553752237216, guid: 29fc1aee10994fe4cb6209d110166f4b, type: 3}
+    - {fileID: 5759659553752237216, guid: 29fc1aee10994fe4cb6209d110166f4b, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.625
+    m_StopTime: 0.6875
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -174,7 +177,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.5
+  - time: 0.6875
     functionName: StopAttack
     data: 
     objectReferenceParameter: {fileID: 0}
