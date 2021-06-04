@@ -78,9 +78,8 @@ public class PlayerController : MonoBehaviour
         CheckGround();
         CheckCollectables();
 
-        if(!cantMove && (!attacking && onTheGround) && !climbingTree)
+        if(!cantMove && (!attacking) && !climbingTree)
             CheckMovement();
-        
     }
 
     // Update is called once per frame.
@@ -145,7 +144,7 @@ public class PlayerController : MonoBehaviour
                 rigidBody2D.velocity = new Vector2(0f, 0f);
                 rigidBody2D.gravityScale = 0f;
                 climbingTree = true;
-                climbTreeAvailable = false;
+                //climbTreeAvailable = false;
                 animator.SetBool("Hanging", true);
             }
         }

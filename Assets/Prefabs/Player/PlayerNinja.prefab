@@ -258,9 +258,9 @@ MonoBehaviour:
   shurikenCant: 5
   moveSpeed: 4
   jumpForce: 9
-  wallJumpForce: 9
+  wallJumpForce: 10
   shurikenSpeed: 6
-  treeJumpForce: 12
+  treeJumpForce: 10
   hurtForce: 4
   climbTreeAvailable: 0
   overATree: 0
