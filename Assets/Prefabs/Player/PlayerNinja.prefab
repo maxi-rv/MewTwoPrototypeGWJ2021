@@ -117,9 +117,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.05, y: 0.1}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.075
 --- !u!114 &8500739149861605977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,8 +222,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4721134543449168706}
-  - {fileID: 4721134543802087323}
   - {fileID: 4721134544473203794}
+  - {fileID: 4721134543802087323}
   - {fileID: 4721134544767646721}
   - {fileID: 4721134544728180392}
   - {fileID: 3335333263579346630}
@@ -245,6 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pushBox: {fileID: 2647603541282915188}
   hurtBox: {fileID: 5294808449768473592}
+  checkTreeBox: {fileID: 4339200832957787988}
   checkHit: {fileID: 4721134544473203804}
   checkGround: {fileID: 4721134544767646723}
   checkWall: {fileID: 4721134544728180395}
@@ -262,11 +263,6 @@ MonoBehaviour:
   shurikenSpeed: 6
   treeJumpForce: 10
   hurtForce: 4
-  climbTreeAvailable: 0
-  overATree: 0
-  climbingTree: 0
-  attacking: 0
-  cantMove: 0
 --- !u!95 &4721134543759675935
 Animator:
   serializedVersion: 3
@@ -327,7 +323,7 @@ SpriteRenderer:
   m_SortingLayerID: 1076162575
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1230295423332175514, guid: a992a6b3fa21fd744b46bd40bd14dd7b, type: 3}
+  m_Sprite: {fileID: -46106071021481654, guid: ce6d5f56570df244ebc9c071f240642a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -388,7 +384,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4721134543759675923}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &2647603541282915188
 CapsuleCollider2D:
@@ -506,7 +502,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4721134543759675923}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4721134544473203804
 MonoBehaviour:
@@ -531,7 +527,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -642,6 +638,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onTheGround: 1
   otherTag: 
+  otherInstanceID: 0
 --- !u!61 &4721134544767646720
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -655,7 +652,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.275}
+  m_Offset: {x: 0, y: -0.3}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -666,7 +663,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.075}
+  m_Size: {x: 0.2, y: 0.075}
   m_EdgeRadius: 0
 --- !u!1 &4721134545216148765
 GameObject:

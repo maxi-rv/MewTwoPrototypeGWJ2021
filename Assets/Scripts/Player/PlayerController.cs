@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     [SerializeField] private Collider2D pushBox;
     [SerializeField] private Collider2D hurtBox;
+    [SerializeField] private Collider2D checkTreeBox;
     [SerializeField] private CheckHit checkHit;
     [SerializeField] private CheckGround checkGround;
     [SerializeField] private CheckWall checkWall;
@@ -21,7 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ShurikenBehaviour shurikenPrefab;
     
     // VARIABLES
-    public float maxHP = 5f;
+    public float maxHP;
     public float currentHP;
     public int shurikenCant;
     [SerializeField] private float moveSpeed;
@@ -30,15 +31,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float shurikenSpeed;
     [SerializeField] private float treeJumpForce;
     [SerializeField] private float hurtForce;
+    private int platformInstanceID;
     private bool secondJumpAvailable;
     private bool wallJumpAvailable;
-    [SerializeField] private bool climbTreeAvailable;
+    private bool climbTreeAvailable;
     private bool onTheGround;
     private bool againstWall;
-    [SerializeField] private bool overATree;
-    [SerializeField] private bool climbingTree;
-    [SerializeField] private bool attacking;
-    [SerializeField] private bool cantMove;
+    private bool overATree;
+    private bool climbingTree;
+    private bool attacking;
+    private bool isHurt;
 
     // INPUT VARIABLES
     private float horizontalAxis;
@@ -68,7 +70,7 @@ public class PlayerController : MonoBehaviour
         overATree = false;
         climbingTree = false;
         attacking = false;
-        cantMove = false;
+        isHurt = false;
     }
 
     // FixedUpdate is called multiple times per frame.
@@ -78,7 +80,7 @@ public class PlayerController : MonoBehaviour
         CheckGround();
         CheckCollectables();
 
-        if(!cantMove && (!attacking) && !climbingTree)
+        if(!isHurt && (!attacking) && !climbingTree)
             CheckMovement();
     }
 
@@ -99,7 +101,7 @@ public class PlayerController : MonoBehaviour
         overATree = checkTree.overATree;
         //Checking the Ground is a separate check on "CheckGround()"
 
-        if(!cantMove)
+        if(!isHurt)
             CheckActions();
     }
 
@@ -129,7 +131,6 @@ public class PlayerController : MonoBehaviour
                 animator.SetTrigger("MeleeAttacking");
             }
         }
-        
 
         if(hangButton && overATree && !onTheGround && climbTreeAvailable)
         {
@@ -161,7 +162,13 @@ public class PlayerController : MonoBehaviour
             }  
             else if (onTheGround)
             {
-                JumpStart();
+                if(verticalAxis<0f && checkGround.otherTag=="Platform")
+                {
+                    platformInstanceID = checkGround.otherInstanceID;
+                    disablePushBox();
+                }
+                else
+                    JumpStart();
             }
             else if (!onTheGround && checkWall.againstWallRight)
             {
@@ -229,11 +236,12 @@ public class PlayerController : MonoBehaviour
         if(HorizontalAxis > 0.1f)
         {
             spriteRenderer.flipX = false;
+            checkTreeBox.offset = new Vector2(0.05f, 0.1f);
         }
-
-        if(HorizontalAxis < -0.1f)
+        else if(HorizontalAxis < -0.1f)
         {
             spriteRenderer.flipX = true;
+            checkTreeBox.offset = new Vector2(-0.05f, 0.1f);
         }
     }
 
@@ -249,13 +257,19 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetBool("Falling", true);
                 animator.SetBool("Jumping", false);
-                rigidBody2D.gravityScale = 2f;
+                rigidBody2D.gravityScale = 1.5f;
             }
         }
         else
         {
             animator.SetBool("Jumping", false);
             animator.SetBool("Falling", false);
+            
+            if(checkGround.otherTag=="Platform" && checkGround.otherInstanceID!=platformInstanceID)
+                enablePushBox();
+            else if(checkGround.otherTag=="Ground")
+                enablePushBox();
+
             secondJumpAvailable = true;
             wallJumpAvailable = true;
             climbTreeAvailable = true;
@@ -337,11 +351,11 @@ public class PlayerController : MonoBehaviour
         checkHit.isHurt = false;
         disableHurtBox();
         currentHP--;
-        cantMove = true;
+        isHurt = true;
 
         if(currentHP>0)
         {
-            cantMove = true;
+            isHurt = true;
             animator.SetTrigger("Damaged");
             FlashWhite();
             Invoke("FlashBack", 0.1f);
@@ -388,7 +402,7 @@ public class PlayerController : MonoBehaviour
     public void StopHurt()
     {
         rigidBody2D.velocity = new Vector2(0f, 0f);
-        cantMove = false;
+        isHurt = false;
     }
 
     public void StopDead()
@@ -404,6 +418,16 @@ public class PlayerController : MonoBehaviour
     private void enableHurtBox()
     {
         hurtBox.enabled = true;
+    }
+
+    private void disablePushBox()
+    {
+        pushBox.enabled = false;
+    }
+
+    private void enablePushBox()
+    {
+        pushBox.enabled = true;
     }
 
     // Sets required variables to stop the attacking state.

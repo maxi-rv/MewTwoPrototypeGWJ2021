@@ -19,12 +19,12 @@ TagManager:
   - Water
   - UI
   - 
-  - PushBox Player
+  - PushBoxPlayer
   - HurtBox
   - HitBox
-  - PushBox Enemy
-  - PushBox Collectable
-  - PushBox Enviroment
+  - PushBoxEnemy
+  - PushBoxCollectable
+  - PushBoxEnviroment
   - 
   - 
   - 
