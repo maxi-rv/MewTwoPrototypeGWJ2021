@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3637435418782239646}
   - component: {fileID: 455754488726088559}
   - component: {fileID: 151659757326573973}
+  - component: {fileID: 851955726968469258}
   m_Layer: 12
   m_Name: rama-hojas-izq-2-B
   m_TagString: Platform
@@ -105,6 +106,32 @@ PlatformEffector2D:
   m_UseSideBounce: 0
   m_SideArc: 1
 --- !u!61 &151659757326573973
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3802021249729145920}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.12, y: -0.16}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.578125, y: 0.578125}
+    newSize: {x: 0.578125, y: 0.578125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.32, y: 0.067907125}
+  m_EdgeRadius: 0
+--- !u!61 &851955726968469258
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
