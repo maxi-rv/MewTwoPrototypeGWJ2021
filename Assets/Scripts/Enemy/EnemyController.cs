@@ -15,6 +15,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Material matDefault;
     [SerializeField] private Material matWhite;
     [SerializeField] private ShurikenBehaviour shurikenPrefab;
+    [SerializeField] private PoofBehaviour poofPrefab;
+    [SerializeField] private LogBehaviour logPrefab;
 
     // VARIABLES
     [SerializeField] private float maxHP;
@@ -96,7 +98,16 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            //Instantiate Poof
+            Quaternion rotation = new Quaternion(0f, 0f, 0f, 0f);
+            Vector3 position = gameObject.transform.position;
+
+            if(spriteRenderer.flipX==false)
+                position = position + new Vector3(-0.15f,0f,0f);
+            else
+                position = position + new Vector3(0.15f,0f,0f);
+
+            Instantiate(poofPrefab, position, rotation);
+            Instantiate(logPrefab, position, logPrefab.gameObject.transform.rotation);
             GameObject.Destroy(gameObject);
         }
 

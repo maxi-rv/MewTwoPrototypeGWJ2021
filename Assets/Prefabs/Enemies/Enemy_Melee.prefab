@@ -224,6 +224,8 @@ MonoBehaviour:
   matDefault: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   matWhite: {fileID: 2100000, guid: 30d4f2b9a13631745a04440c8a4b4dad, type: 2}
   shurikenPrefab: {fileID: 0}
+  poofPrefab: {fileID: 8144142502428123615, guid: d4c3fd0a3e4b4b04a9050d11bea8592d, type: 3}
+  logPrefab: {fileID: 3616715516114462540, guid: 532602667f522304fb59f96179bc414f, type: 3}
   maxHP: 2
   currentHP: 0
   moveSpeed: 10
@@ -387,6 +389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onTheGround: 0
   otherTag: 
+  otherInstanceID: 0
 --- !u!1 &7546780948413599246
 GameObject:
   m_ObjectHideFlags: 0
