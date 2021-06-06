@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class EnemyMeleeController : MonoBehaviour
 {
     // GAMEOBJECT COMPONENTS
     private Rigidbody2D rigidBody2D;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    private RaycastHit2D searchPlayer;
     [SerializeField] private Collider2D bodyHitBox;
     [SerializeField] private Collider2D hitBox;
     [SerializeField] private Collider2D hurtBox;
@@ -16,7 +17,6 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private CheckGround checkGround;
     [SerializeField] private Material matDefault;
     [SerializeField] private Material matWhite;
-    [SerializeField] private ShurikenBehaviour shurikenPrefab;
     [SerializeField] private PoofBehaviour poofPrefab;
     [SerializeField] private LogBehaviour logPrefab;
 
@@ -26,6 +26,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float hurtForce;
     private bool onTheGround;
+    private bool attacking;
 
     // Start is called before the first frame update
     void Awake()
@@ -38,8 +39,12 @@ public class EnemyController : MonoBehaviour
         //Getting the dafault material for later use.
         matDefault = spriteRenderer.material;
 
+        //Initializes RayCast2D
+        //searchPlayer = !!!
+
         // Initializes Variables
         currentHP = maxHP;
+        attacking = false;
     }
 
     void FixedUpdate()
@@ -47,14 +52,14 @@ public class EnemyController : MonoBehaviour
         CheckHit();
         CheckGround();
 
-        
+
     }
 
     // Flips the sprite on the X Axis according to the Axis input.
     // Needs to be called by another function, which must check the facing sides first.
     private void FlipSprite(float HorizontalAxis)
     {
-        if(HorizontalAxis > 0.1f)
+        if(HorizontalAxis > 0.1f) //Change Condition!!!
         {
             spriteRenderer.flipX = false;
             bodyHitBox.offset = new Vector2(-0.14f, -0.038f);
@@ -63,7 +68,7 @@ public class EnemyController : MonoBehaviour
             pushBox.offset = new Vector2(-0.145f, -0.026f);
             checkGround.gameObject.GetComponent<Collider2D>().offset = new Vector2(-0.174f, -0.225f);
         }
-        else if(HorizontalAxis < -0.1f)
+        else if(HorizontalAxis < -0.1f) //Change Condition!!!
         {
             spriteRenderer.flipX = true;
             bodyHitBox.offset = new Vector2(0.14f, -0.038f);
@@ -77,23 +82,6 @@ public class EnemyController : MonoBehaviour
     private void CheckGround()
     {
         onTheGround = checkGround.onTheGround;
-
-        if(!onTheGround)
-        {
-            //AND FALLING!
-            if (rigidBody2D.velocity.normalized.y < 0f)
-            {
-                animator.SetBool("Falling", true);
-                animator.SetBool("Jumping", false);
-                rigidBody2D.gravityScale = 2f;
-            }
-        }
-        else
-        {
-            animator.SetBool("Jumping", false);
-            animator.SetBool("Falling", false);
-            rigidBody2D.gravityScale = 3f;
-        }
     }
 
     private void CheckHit()
@@ -112,7 +100,6 @@ public class EnemyController : MonoBehaviour
 
         if(currentHP>0)
         {
-            animator.SetTrigger("Damaged");
             FlashWhite();
             Invoke("FlashBack", 0.1f);
             Invoke("FlashWhite", 0.2f);
@@ -140,6 +127,7 @@ public class EnemyController : MonoBehaviour
         }
 
         rigidBody2D.velocity = new Vector2(0f, 0f);
+
         if(spriteRenderer.flipX == true) //Mirando a la Izquierda
         {
             rigidBody2D.AddForce(new Vector2(hurtForce, hurtForce), ForceMode2D.Impulse);
@@ -148,6 +136,7 @@ public class EnemyController : MonoBehaviour
         {
             rigidBody2D.AddForce(new Vector2(-hurtForce, hurtForce), ForceMode2D.Impulse);
         }
+
         checkGround.onTheGround = false;
         onTheGround = false;
     }
@@ -166,5 +155,10 @@ public class EnemyController : MonoBehaviour
     public void StopHurt()
     {
         rigidBody2D.velocity = new Vector2(0f, 0f);
+    }
+
+    public void StopAttack()
+    {
+        attacking = false;
     }
 }

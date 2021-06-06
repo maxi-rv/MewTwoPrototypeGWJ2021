@@ -257,12 +257,12 @@ MonoBehaviour:
   shurikenPrefab: {fileID: 3692352562470081074, guid: eec4354bdcd3b4f44ac6f78198595cac, type: 3}
   maxHP: 5
   currentHP: 0
-  shurikenCant: 5
+  shurikenCant: 15
   moveSpeed: 4
-  jumpForce: 9
-  wallJumpForce: 10
+  jumpForce: 8
+  wallJumpForce: 6
   shurikenSpeed: 6
-  treeJumpForce: 10
+  treeJumpForce: 6
   hurtForce: 4
 --- !u!95 &4721134543759675935
 Animator:
@@ -322,7 +322,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1076162575
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: -1230295423332175514, guid: a992a6b3fa21fd744b46bd40bd14dd7b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

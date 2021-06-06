@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     
     //VARIABLES
     [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private string firstSceneName;
     private PlayerController playerController;
     private GameObject playerInstance;  
     private string currentSceneName;
@@ -49,7 +50,7 @@ public class GameController : MonoBehaviour
         if(Input.GetKey(KeyCode.Return) && !onPlayingLevel)
         {
             //Loads first Scene
-            currentSceneName = "LevelTest";
+            currentSceneName = firstSceneName;
             loadScene(currentSceneName);
             onPlayingLevel = true;
 
@@ -63,9 +64,7 @@ public class GameController : MonoBehaviour
             uiController.enableShurikenCounter();
             uiController.setShurikenCounter(playerController.shurikenCant);
         }
-
-        //While playing a level
-        if(onPlayingLevel)
+        else if(onPlayingLevel) //While playing a level
         {
             uiController.currentHP = playerController.currentHP;
             uiController.setShurikenCounter(playerController.shurikenCant);
@@ -86,11 +85,6 @@ public class GameController : MonoBehaviour
                     playerIsDead = true;
                 }
             }
-        }
-        else if (!onPlayingLevel && Input.GetKey(KeyCode.Return))
-        {
-            this.loadScene("LevelTest");
-            this.instantiatePlayer();
         }     
     }
 

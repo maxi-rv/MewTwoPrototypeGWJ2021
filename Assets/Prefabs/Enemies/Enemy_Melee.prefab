@@ -143,7 +143,7 @@ Transform:
   m_GameObject: {fileID: 5138100699860758897}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_Children:
   - {fileID: 5222874707524574477}
   - {fileID: 3863943051359923404}
@@ -192,7 +192,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2106625259
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 4281252710719700821, guid: d289ce847bb73e14b908f7380a622515, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -225,7 +225,6 @@ MonoBehaviour:
   checkGround: {fileID: 3375990185580226406}
   matDefault: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   matWhite: {fileID: 2100000, guid: 30d4f2b9a13631745a04440c8a4b4dad, type: 2}
-  shurikenPrefab: {fileID: 0}
   poofPrefab: {fileID: 8144142502428123615, guid: d4c3fd0a3e4b4b04a9050d11bea8592d, type: 3}
   logPrefab: {fileID: 3616715516114462540, guid: 532602667f522304fb59f96179bc414f, type: 3}
   maxHP: 2

@@ -533,6 +533,7 @@ MonoBehaviour:
   uiController: {fileID: 6121240333084556982}
   cameraController: {fileID: 6121240333042876361}
   playerPrefab: {fileID: 4721134543759675922, guid: e4781bce0df3f2b4690ce9c3831df980, type: 3}
+  firstSceneName: LevelTest
 --- !u!114 &338560694
 MonoBehaviour:
   m_ObjectHideFlags: 0
