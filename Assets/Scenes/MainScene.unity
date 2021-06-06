@@ -138,6 +138,14 @@ PrefabInstance:
       propertyPath: m_positionOffsetData.positionOffset.y
       value: -0.050794482
       objectReference: {fileID: 0}
+    - target: {fileID: 6121240333042876361, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
+      propertyPath: verticalLimitUp
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6121240333042876361, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
+      propertyPath: verticalLimitDown
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6121240333380415525, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
       propertyPath: m_Name
       value: GameController
