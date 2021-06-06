@@ -9,8 +9,9 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rigidBody2D;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
-    [SerializeField] private Collider2D pushBox;
+    [SerializeField] private Collider2D hitBox;
     [SerializeField] private Collider2D hurtBox;
+    [SerializeField] private Collider2D pushBox;
     [SerializeField] private Collider2D checkTreeBox;
     [SerializeField] private CheckHit checkHit;
     [SerializeField] private CheckGround checkGround;
@@ -237,11 +238,13 @@ public class PlayerController : MonoBehaviour
         {
             spriteRenderer.flipX = false;
             checkTreeBox.offset = new Vector2(0.05f, 0.1f);
+            hitBox.offset = new Vector2(0.27f, 0.05f);
         }
         else if(HorizontalAxis < -0.1f)
         {
             spriteRenderer.flipX = true;
             checkTreeBox.offset = new Vector2(-0.05f, 0.1f);
+            hitBox.offset = new Vector2(-0.27f, 0.05f);
         }
     }
 

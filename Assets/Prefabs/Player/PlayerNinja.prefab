@@ -243,8 +243,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 228d6e377a63bbb459d2125a0eef8c05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushBox: {fileID: 2647603541282915188}
+  hitBox: {fileID: 4721134543449168717}
   hurtBox: {fileID: 5294808449768473592}
+  pushBox: {fileID: 2647603541282915188}
   checkTreeBox: {fileID: 4339200832957787988}
   checkHit: {fileID: 4721134544473203804}
   checkGround: {fileID: 4721134544767646723}

@@ -8,8 +8,10 @@ public class EnemyController : MonoBehaviour
     private Rigidbody2D rigidBody2D;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
-    [SerializeField] private Collider2D pushBox;
+    [SerializeField] private Collider2D bodyHitBox;
+    [SerializeField] private Collider2D hitBox;
     [SerializeField] private Collider2D hurtBox;
+    [SerializeField] private Collider2D pushBox;
     [SerializeField] private CheckHit checkHit;
     [SerializeField] private CheckGround checkGround;
     [SerializeField] private Material matDefault;
@@ -44,6 +46,32 @@ public class EnemyController : MonoBehaviour
     {
         CheckHit();
         CheckGround();
+
+        
+    }
+
+    // Flips the sprite on the X Axis according to the Axis input.
+    // Needs to be called by another function, which must check the facing sides first.
+    private void FlipSprite(float HorizontalAxis)
+    {
+        if(HorizontalAxis > 0.1f)
+        {
+            spriteRenderer.flipX = false;
+            bodyHitBox.offset = new Vector2(-0.14f, -0.038f);
+            hitBox.offset = new Vector2(0.19f, 0f);
+            hurtBox.offset = new Vector2(-0.146f, -0.039f);
+            pushBox.offset = new Vector2(-0.145f, -0.026f);
+            checkGround.gameObject.GetComponent<Collider2D>().offset = new Vector2(-0.174f, -0.225f);
+        }
+        else if(HorizontalAxis < -0.1f)
+        {
+            spriteRenderer.flipX = true;
+            bodyHitBox.offset = new Vector2(0.14f, -0.038f);
+            hitBox.offset = new Vector2(-0.19f, 0f);
+            hurtBox.offset = new Vector2(0.146f, -0.039f);
+            pushBox.offset = new Vector2(0.145f, -0.026f);
+            checkGround.gameObject.GetComponent<Collider2D>().offset = new Vector2(0.174f, -0.225f);
+        }
     }
 
     private void CheckGround()
