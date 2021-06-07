@@ -258,12 +258,12 @@ MonoBehaviour:
   maxHP: 5
   currentHP: 0
   shurikenCant: 15
-  moveSpeed: 4
-  jumpForce: 8
+  moveSpeed: 3.3
+  jumpForce: 7
   wallJumpForce: 6
   shurikenSpeed: 6
   treeJumpForce: 6
-  hurtForce: 4
+  hurtForce: 2
 --- !u!95 &4721134543759675935
 Animator:
   serializedVersion: 3
@@ -322,7 +322,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1076162575
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: -1230295423332175514, guid: a992a6b3fa21fd744b46bd40bd14dd7b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
