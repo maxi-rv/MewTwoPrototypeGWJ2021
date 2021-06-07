@@ -140,11 +140,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6121240333042876361, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
       propertyPath: verticalLimitUp
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6121240333042876361, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
       propertyPath: verticalLimitDown
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6121240333380415525, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
       propertyPath: m_Name
