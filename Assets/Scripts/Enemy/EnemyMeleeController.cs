@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,7 +27,8 @@ public class EnemyMeleeController : MonoBehaviour
     [SerializeField] private float currentHP;
     [SerializeField] private float meleeDamage;
     [SerializeField] private float moveSpeed;
-    private float hurtForce;
+    [SerializeField] private float attackForce;
+    [SerializeField] private float hurtForce;
     private bool onTheGround;
     private bool attacking;
 
@@ -55,8 +57,31 @@ public class EnemyMeleeController : MonoBehaviour
     {
         CheckHit();
         CheckGround();
+        CheckForPlayer();
+    }
 
-        
+    private void CheckForPlayer()
+    {
+        int layerMask = LayerMask.GetMask("PushBox");
+        Vector3 origin = gameObject.transform.position;
+
+        //Check for player on the Left
+        RaycastHit2D targetLeft = Physics2D.Raycast(origin, Vector2.left, 5f, layerMask);
+        //Check for player on the Right
+        RaycastHit2D targetRight = Physics2D.Raycast(origin, Vector2.right, 5f, layerMask);
+
+        if(targetLeft.collider.gameObject.tag == "Player")
+        { 
+            rigidBody2D.AddForce(new Vector2(-attackForce, 0f), ForceMode2D.Impulse);
+            animator.SetTrigger("Attacking");
+            FlipSprite(-1f);
+        }
+        else if(targetRight.transform.tag == "Player")
+        {
+            rigidBody2D.AddForce(new Vector2(attackForce, 0f), ForceMode2D.Impulse);
+            animator.SetTrigger("Attacking");
+            FlipSprite(1f);
+        }
     }
 
     // Flips the sprite on the X Axis according to the Axis input.
@@ -127,7 +152,7 @@ public class EnemyMeleeController : MonoBehaviour
                 position = position + new Vector3(0.15f,0f,0f);
 
             Instantiate(poofPrefab, position, rotation);
-            Instantiate(logPrefab, position, logPrefab.gameObject.transform.rotation);
+            //Instantiate(logPrefab, position, logPrefab.gameObject.transform.rotation);
             GameObject.Destroy(gameObject);
         }
 

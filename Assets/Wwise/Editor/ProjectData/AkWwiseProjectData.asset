@@ -1,0 +1,725 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f5dba9dd6575044e94c01430e575526, type: 3}
+  m_Name: AkWwiseProjectData
+  m_EditorClassIdentifier: 
+  AcousticTextureWwu:
+  - PhysicalPath: Virtual Acoustics\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Virtual Acoustics
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Default Work Unit
+      ObjectType: 12
+      guid: 69994efbeeb01b44ba1e2879a5534f3c
+    ParentPath: Virtual Acoustics\Default Work Unit
+    guid: 69994efbeeb01b44ba1e2879a5534f3c
+    GuidInternal: 
+    m_lastTime: -8585798034102671526
+    List: []
+  - PhysicalPath: Virtual Acoustics\Factory Acoustic Textures.wwu
+    PathAndIcons:
+    - ElementName: Virtual Acoustics
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Factory Acoustic Textures
+      ObjectType: 12
+      guid: 6b663d46a83ca54f8b4a5fef12b883f6
+    ParentPath: Virtual Acoustics\Factory Acoustic Textures
+    guid: 6b663d46a83ca54f8b4a5fef12b883f6
+    GuidInternal: 
+    m_lastTime: -8585798049184452046
+    List:
+    - name: Acoustic_Banner
+      guid: f2532d2fccda8e408b8898b1b52a26d6
+      id: 4168643977
+      PathAndIcons:
+      - ElementName: Virtual Acoustics
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Factory Acoustic Textures
+        ObjectType: 12
+        guid: 6b663d46a83ca54f8b4a5fef12b883f6
+      - ElementName: Textures
+        ObjectType: 4
+        guid: a3121e7828e3df4a8bba5fb89c74031d
+      - ElementName: Acoustic_Banner
+        ObjectType: 15
+        guid: f2532d2fccda8e408b8898b1b52a26d6
+      Path: Virtual Acoustics\Factory Acoustic Textures\Textures\Acoustic_Banner
+    - name: Anechoic
+      guid: 32c20a8be202de4ebeacfdd1a900e3ed
+      id: 1873957695
+      PathAndIcons:
+      - ElementName: Virtual Acoustics
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Factory Acoustic Textures
+        ObjectType: 12
+        guid: 6b663d46a83ca54f8b4a5fef12b883f6
+      - ElementName: Textures
+        ObjectType: 4
+        guid: a3121e7828e3df4a8bba5fb89c74031d
+      - ElementName: Anechoic
+        ObjectType: 15
+        guid: 32c20a8be202de4ebeacfdd1a900e3ed
+      Path: Virtual Acoustics\Factory Acoustic Textures\Textures\Anechoic
+    - name: Brick
+      guid: a9a586b004f2534ca838bdb18b18f6d6
+      id: 504532776
+      PathAndIcons:
+      - ElementName: Virtual Acoustics
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Factory Acoustic Textures
+        ObjectType: 12
+        guid: 6b663d46a83ca54f8b4a5fef12b883f6
+      - ElementName: Textures
+        ObjectType: 4
+        guid: a3121e7828e3df4a8bba5fb89c74031d
+      - ElementName: Brick
+        ObjectType: 15
+        guid: a9a586b004f2534ca838bdb18b18f6d6
+      Path: Virtual Acoustics\Factory Acoustic Textures\Textures\Brick
+    - name: Carpet
+      guid: 8975223456dc604296c4b9f4b669092b
+      id: 2412606308
+      PathAndIcons:
+      - ElementName: Virtual Acoustics
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Factory Acoustic Textures
+        ObjectType: 12
+        guid: 6b663d46a83ca54f8b4a5fef12b883f6
+      - ElementName: Textures
+        ObjectType: 4
+        guid: a3121e7828e3df4a8bba5fb89c74031d
+      - ElementName: Carpet
+        ObjectType: 15
+        guid: 8975223456dc604296c4b9f4b669092b
+      Path: Virtual Acoustics\Factory Acoustic Textures\Textures\Carpet
+    - name: Concrete
+      guid: 001cf85c9628e04aaf7c3080bdaba682
+      id: 841620460
+      PathAndIcons:
+      - ElementName: Virtual Acoustics
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Factory Acoustic Textures
+        ObjectType: 12
+        guid: 6b663d46a83ca54f8b4a5fef12b883f6
+      - ElementName: Textures
+        ObjectType: 4
+        guid: a3121e7828e3df4a8bba5fb89c74031d
+      - ElementName: Concrete
+        ObjectType: 15
+        guid: 001cf85c9628e04aaf7c3080bdaba682
+      Path: Virtual Acoustics\Factory Acoustic Textures\Textures\Concrete
+    - name: Cork_Tiles
+      guid: 19c9d2305f92434189063dbb3c4ae5e2
+      id: 3195498748
+      PathAndIcons:
+      - ElementName: Virtual Acoustics
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Factory Acoustic Textures
+        ObjectType: 12
+        guid: 6b663d46a83ca54f8b4a5fef12b883f6
+      - ElementName: Textures
+        ObjectType: 4
+        guid: a3121e7828e3df4a8bba5fb89c74031d
+      - ElementName: Cork_Tiles
+        ObjectType: 15
+        guid: 19c9d2305f92434189063dbb3c4ae5e2
+      Path: Virtual Acoustics\Factory Acoustic Textures\Textures\Cork_Tiles
+    - name: Curtains
+      guid: 339ee6f8975c6849b508a1535f2d66e8
+      id: 2928161104
+      PathAndIcons:
+      - ElementName: Virtual Acoustics
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Factory Acoustic Textures
+        ObjectType: 12
+        guid: 6b663d46a83ca54f8b4a5fef12b883f6
+      - ElementName: Textures
+        ObjectType: 4
+        guid: a3121e7828e3df4a8bba5fb89c74031d
+      - ElementName: Curtains
+        ObjectType: 15
+        guid: 339ee6f8975c6849b508a1535f2d66e8
+      Path: Virtual Acoustics\Factory Acoustic Textures\Textures\Curtains
+    - name: Drywall
+      guid: f4e3a4680b4c8746a8b8a84db93dbc8f
+      id: 3670307564
+      PathAndIcons:
+      - ElementName: Virtual Acoustics
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Factory Acoustic Textures
+        ObjectType: 12
+        guid: 6b663d46a83ca54f8b4a5fef12b883f6
+      - ElementName: Textures
+        ObjectType: 4
+        guid: a3121e7828e3df4a8bba5fb89c74031d
+      - ElementName: Drywall
+        ObjectType: 15
+        guid: f4e3a4680b4c8746a8b8a84db93dbc8f
+      Path: Virtual Acoustics\Factory Acoustic Textures\Textures\Drywall
+    - name: Fabric
+      guid: 32d581836edbed4ea7a3bc7b0a0b8ba8
+      id: 1970351858
+      PathAndIcons:
+      - ElementName: Virtual Acoustics
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Factory Acoustic Textures
+        ObjectType: 12
+        guid: 6b663d46a83ca54f8b4a5fef12b883f6
+      - ElementName: Textures
+        ObjectType: 4
+        guid: a3121e7828e3df4a8bba5fb89c74031d
+      - ElementName: Fabric
+        ObjectType: 15
+        guid: 32d581836edbed4ea7a3bc7b0a0b8ba8
+      Path: Virtual Acoustics\Factory Acoustic Textures\Textures\Fabric
+    - name: Mountain
+      guid: 313793c51a00b44a98dd9b033a8c8eab
+      id: 513139656
+      PathAndIcons:
+      - ElementName: Virtual Acoustics
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Factory Acoustic Textures
+        ObjectType: 12
+        guid: 6b663d46a83ca54f8b4a5fef12b883f6
+      - ElementName: Textures
+        ObjectType: 4
+        guid: a3121e7828e3df4a8bba5fb89c74031d
+      - ElementName: Mountain
+        ObjectType: 15
+        guid: 313793c51a00b44a98dd9b033a8c8eab
+      Path: Virtual Acoustics\Factory Acoustic Textures\Textures\Mountain
+    - name: Textures
+      guid: a3121e7828e3df4a8bba5fb89c74031d
+      id: 1276632493
+      PathAndIcons:
+      - ElementName: Virtual Acoustics
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Factory Acoustic Textures
+        ObjectType: 12
+        guid: 6b663d46a83ca54f8b4a5fef12b883f6
+      - ElementName: Textures
+        ObjectType: 4
+        guid: a3121e7828e3df4a8bba5fb89c74031d
+      Path: Virtual Acoustics\Factory Acoustic Textures\Textures
+    - name: Tile
+      guid: c4da82a82a13b747ba9db9907ba29cc0
+      id: 2637588553
+      PathAndIcons:
+      - ElementName: Virtual Acoustics
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Factory Acoustic Textures
+        ObjectType: 12
+        guid: 6b663d46a83ca54f8b4a5fef12b883f6
+      - ElementName: Textures
+        ObjectType: 4
+        guid: a3121e7828e3df4a8bba5fb89c74031d
+      - ElementName: Tile
+        ObjectType: 15
+        guid: c4da82a82a13b747ba9db9907ba29cc0
+      Path: Virtual Acoustics\Factory Acoustic Textures\Textures\Tile
+    - name: Wood
+      guid: 96bcff1fe76f9e48ba6c7c14a71391ae
+      id: 2058049674
+      PathAndIcons:
+      - ElementName: Virtual Acoustics
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Factory Acoustic Textures
+        ObjectType: 12
+        guid: 6b663d46a83ca54f8b4a5fef12b883f6
+      - ElementName: Textures
+        ObjectType: 4
+        guid: a3121e7828e3df4a8bba5fb89c74031d
+      - ElementName: Wood
+        ObjectType: 15
+        guid: 96bcff1fe76f9e48ba6c7c14a71391ae
+      Path: Virtual Acoustics\Factory Acoustic Textures\Textures\Wood
+    - name: Wood_Bright
+      guid: e5d1857ba2c1634e9a13cec54b641adc
+      id: 4262522749
+      PathAndIcons:
+      - ElementName: Virtual Acoustics
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Factory Acoustic Textures
+        ObjectType: 12
+        guid: 6b663d46a83ca54f8b4a5fef12b883f6
+      - ElementName: Textures
+        ObjectType: 4
+        guid: a3121e7828e3df4a8bba5fb89c74031d
+      - ElementName: Wood_Bright
+        ObjectType: 15
+        guid: e5d1857ba2c1634e9a13cec54b641adc
+      Path: Virtual Acoustics\Factory Acoustic Textures\Textures\Wood_Bright
+    - name: Wood_Deep
+      guid: 8e474652dac50c4ea0dec98d1479529a
+      id: 1755085759
+      PathAndIcons:
+      - ElementName: Virtual Acoustics
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Factory Acoustic Textures
+        ObjectType: 12
+        guid: 6b663d46a83ca54f8b4a5fef12b883f6
+      - ElementName: Textures
+        ObjectType: 4
+        guid: a3121e7828e3df4a8bba5fb89c74031d
+      - ElementName: Wood_Deep
+        ObjectType: 15
+        guid: 8e474652dac50c4ea0dec98d1479529a
+      Path: Virtual Acoustics\Factory Acoustic Textures\Textures\Wood_Deep
+  AuxBusWwu:
+  - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Master-Mixer Hierarchy
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Default Work Unit
+      ObjectType: 12
+      guid: f7495e2a226fea429643c5779e1a5168
+    ParentPath: Master-Mixer Hierarchy\Default Work Unit
+    guid: f7495e2a226fea429643c5779e1a5168
+    GuidInternal: 
+    m_lastTime: -8585798034102191411
+    List:
+    - name: Master Audio Bus
+      guid: d8a41415a61d2a41a17e75ca0c2149f3
+      id: 3803692087
+      PathAndIcons:
+      - ElementName: Master-Mixer Hierarchy
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: f7495e2a226fea429643c5779e1a5168
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+        guid: d8a41415a61d2a41a17e75ca0c2149f3
+      Path: Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus
+  BankWwu:
+  - PhysicalPath: SoundBanks\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: SoundBanks
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Default Work Unit
+      ObjectType: 12
+      guid: b688bdcfe614104fb989078ee7600065
+    ParentPath: SoundBanks\Default Work Unit
+    guid: b688bdcfe614104fb989078ee7600065
+    GuidInternal: 
+    m_lastTime: -8585785837298698246
+    List:
+    - name: DoS
+      guid: 327e2f1605e165428f9b9aeb702c5460
+      id: 546651193
+      PathAndIcons:
+      - ElementName: SoundBanks
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: b688bdcfe614104fb989078ee7600065
+      - ElementName: DoS
+        ObjectType: 7
+        guid: 327e2f1605e165428f9b9aeb702c5460
+      Path: SoundBanks\Default Work Unit\DoS
+  EventWwu:
+  - PhysicalPath: Events\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Events
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Default Work Unit
+      ObjectType: 12
+      guid: 8d90199323c1754ea80f5ad115f182ba
+    ParentPath: Events\Default Work Unit
+    guid: 8d90199323c1754ea80f5ad115f182ba
+    GuidInternal: 
+    m_lastTime: -8585785020345905036
+    List:
+    - name: Enemy_Death
+      guid: ccb040e04d93d845872b898fc067945c
+      id: 1205999388
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 8d90199323c1754ea80f5ad115f182ba
+      - ElementName: Enemy_Death
+        ObjectType: 3
+        guid: ccb040e04d93d845872b898fc067945c
+      Path: Events\Default Work Unit\Enemy_Death
+      maxAttenuation: 0
+      maxDuration: 1.668563
+      minDuration: 1.249313
+    - name: Game_Music
+      guid: fcac55db07a1914b9343f0d20c1c1d93
+      id: 258110631
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 8d90199323c1754ea80f5ad115f182ba
+      - ElementName: Game_Music
+        ObjectType: 3
+        guid: fcac55db07a1914b9343f0d20c1c1d93
+      Path: Events\Default Work Unit\Game_Music
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Player_Climb
+      guid: 1f0f85896721dc48b2d791a9eac35feb
+      id: 3549554524
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 8d90199323c1754ea80f5ad115f182ba
+      - ElementName: Player_Climb
+        ObjectType: 3
+        guid: 1f0f85896721dc48b2d791a9eac35feb
+      Path: Events\Default Work Unit\Player_Climb
+      maxAttenuation: 0
+      maxDuration: 0.99925
+      minDuration: 0.99925
+    - name: Player_Death
+      guid: e962f02e879f69468c7698c4215b7e7a
+      id: 3083087645
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 8d90199323c1754ea80f5ad115f182ba
+      - ElementName: Player_Death
+        ObjectType: 3
+        guid: e962f02e879f69468c7698c4215b7e7a
+      Path: Events\Default Work Unit\Player_Death
+      maxAttenuation: 0
+      maxDuration: 4
+      minDuration: 4
+    - name: Player_Jump
+      guid: ac2daef4b97cd441b931e554e3cd8f1c
+      id: 1305133589
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 8d90199323c1754ea80f5ad115f182ba
+      - ElementName: Player_Jump
+        ObjectType: 3
+        guid: ac2daef4b97cd441b931e554e3cd8f1c
+      Path: Events\Default Work Unit\Player_Jump
+      maxAttenuation: 0
+      maxDuration: 0.99925
+      minDuration: 0.99925
+    - name: Player_Jutsu
+      guid: 0c7cd17a777d0d4aab28d3ccbd135e8b
+      id: 2489942206
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 8d90199323c1754ea80f5ad115f182ba
+      - ElementName: Player_Jutsu
+        ObjectType: 3
+        guid: 0c7cd17a777d0d4aab28d3ccbd135e8b
+      Path: Events\Default Work Unit\Player_Jutsu
+      maxAttenuation: 0
+      maxDuration: 1.017354
+      minDuration: 1.017354
+    - name: Player_Walljump
+      guid: b6c825ad0cea4847aa4733d2bedb6d89
+      id: 82252273
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 8d90199323c1754ea80f5ad115f182ba
+      - ElementName: Player_Walljump
+        ObjectType: 3
+        guid: b6c825ad0cea4847aa4733d2bedb6d89
+      Path: Events\Default Work Unit\Player_Walljump
+      maxAttenuation: 0
+      maxDuration: 1.04925
+      minDuration: 1.04925
+    - name: Shuriken_Hit
+      guid: cdee19fa251902459a0307be717f6e7e
+      id: 115878822
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 8d90199323c1754ea80f5ad115f182ba
+      - ElementName: Shuriken_Hit
+        ObjectType: 3
+        guid: cdee19fa251902459a0307be717f6e7e
+      Path: Events\Default Work Unit\Shuriken_Hit
+      maxAttenuation: 0
+      maxDuration: 0.991292
+      minDuration: 0.65
+    - name: Shuriken_Throw
+      guid: 1b968ce69a931e478113b43694ddf75d
+      id: 3658760109
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 8d90199323c1754ea80f5ad115f182ba
+      - ElementName: Shuriken_Throw
+        ObjectType: 3
+        guid: 1b968ce69a931e478113b43694ddf75d
+      Path: Events\Default Work Unit\Shuriken_Throw
+      maxAttenuation: 0
+      maxDuration: 0.421146
+      minDuration: 0.355563
+    - name: Sword_Hit
+      guid: 6cecd326b9f1b94c94c941981d52e0d9
+      id: 4057287994
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 8d90199323c1754ea80f5ad115f182ba
+      - ElementName: Sword_Hit
+        ObjectType: 3
+        guid: 6cecd326b9f1b94c94c941981d52e0d9
+      Path: Events\Default Work Unit\Sword_Hit
+      maxAttenuation: 0
+      maxDuration: 0.5
+      minDuration: 0.5
+    - name: Sword_Slash
+      guid: 7cbcbc11543fe547b6262d33df14cca4
+      id: 1055183530
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 8d90199323c1754ea80f5ad115f182ba
+      - ElementName: Sword_Slash
+        ObjectType: 3
+        guid: 7cbcbc11543fe547b6262d33df14cca4
+      Path: Events\Default Work Unit\Sword_Slash
+      maxAttenuation: 0
+      maxDuration: 0.434875
+      minDuration: 0.297
+    - name: Walking
+      guid: 8b53ccc59f30ef44aed5b033d8e16eb6
+      id: 340271938
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 8d90199323c1754ea80f5ad115f182ba
+      - ElementName: Walking
+        ObjectType: 3
+        guid: 8b53ccc59f30ef44aed5b033d8e16eb6
+      Path: Events\Default Work Unit\Walking
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+  RtpcWwu:
+  - PhysicalPath: Game Parameters\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Game Parameters
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Default Work Unit
+      ObjectType: 12
+      guid: 6ee904a369e79647a01a52d9f263367b
+    ParentPath: Game Parameters\Default Work Unit
+    guid: 6ee904a369e79647a01a52d9f263367b
+    GuidInternal: 
+    m_lastTime: -8585797992689669506
+    List:
+    - name: Music_RTPC
+      guid: 91d05271fb03b349bf51d2665e5086f1
+      id: 267517120
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 6ee904a369e79647a01a52d9f263367b
+      - ElementName: Music_RTPC
+        ObjectType: 13
+        guid: 91d05271fb03b349bf51d2665e5086f1
+      Path: Game Parameters\Default Work Unit\Music_RTPC
+  StateWwu:
+  - PhysicalPath: States\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: States
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Default Work Unit
+      ObjectType: 12
+      guid: a633b1117ec04a4a860f0babb6ba64e7
+    ParentPath: States\Default Work Unit
+    guid: a633b1117ec04a4a860f0babb6ba64e7
+    GuidInternal: 
+    m_lastTime: -8585785860497216984
+    List:
+    - name: Dead_Or_Alive
+      guid: 5ce3fa0434297642ae199e4078c5f11f
+      id: 3575957003
+      PathAndIcons:
+      - ElementName: States
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a633b1117ec04a4a860f0babb6ba64e7
+      - ElementName: Dead_Or_Alive
+        ObjectType: 9
+        guid: 5ce3fa0434297642ae199e4078c5f11f
+      Path: States\Default Work Unit\Dead_Or_Alive
+      values:
+      - name: Alive
+        guid: 919659f5bad77843b19f172cd3d61a95
+        id: 655265632
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: a633b1117ec04a4a860f0babb6ba64e7
+        - ElementName: Dead_Or_Alive
+          ObjectType: 9
+          guid: 5ce3fa0434297642ae199e4078c5f11f
+        - ElementName: Alive
+          ObjectType: 8
+          guid: 919659f5bad77843b19f172cd3d61a95
+      - name: Boss
+        guid: 8fdd1aaece19414bbfccf53d2eac9f1f
+        id: 1560169506
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: a633b1117ec04a4a860f0babb6ba64e7
+        - ElementName: Dead_Or_Alive
+          ObjectType: 9
+          guid: 5ce3fa0434297642ae199e4078c5f11f
+        - ElementName: Boss
+          ObjectType: 8
+          guid: 8fdd1aaece19414bbfccf53d2eac9f1f
+      - name: Dead
+        guid: d9e613e40bc4694ab4b9b8f9f0296e41
+        id: 2044049779
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: a633b1117ec04a4a860f0babb6ba64e7
+        - ElementName: Dead_Or_Alive
+          ObjectType: 9
+          guid: 5ce3fa0434297642ae199e4078c5f11f
+        - ElementName: Dead
+          ObjectType: 8
+          guid: d9e613e40bc4694ab4b9b8f9f0296e41
+      - name: None
+        guid: 57ca0fac3d5d754cae6b3747538ee5a1
+        id: 748895195
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: a633b1117ec04a4a860f0babb6ba64e7
+        - ElementName: Dead_Or_Alive
+          ObjectType: 9
+          guid: 5ce3fa0434297642ae199e4078c5f11f
+        - ElementName: None
+          ObjectType: 8
+          guid: 57ca0fac3d5d754cae6b3747538ee5a1
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
+  SwitchWwu:
+  - PhysicalPath: Switches\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Switches
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Default Work Unit
+      ObjectType: 12
+      guid: b4b95ba18626c2428dce1f3251d031c1
+    ParentPath: Switches\Default Work Unit
+    guid: b4b95ba18626c2428dce1f3251d031c1
+    GuidInternal: 
+    m_lastTime: -8585798034102561495
+    List: []
+  TriggerWwu:
+  - PhysicalPath: Triggers\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Triggers
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Default Work Unit
+      ObjectType: 12
+      guid: e69c4d748919714da554b03cd9ac916c
+    ParentPath: Triggers\Default Work Unit
+    guid: e69c4d748919714da554b03cd9ac916c
+    GuidInternal: 
+    m_lastTime: -8585798034102731527
+    List: []
+  ExpandedFileSystemItemIds: 02000000100000001200000013000000190000001a0000001d0000001f000000
+  ExpandedWaapiItemIds: 02000000030000001200000013000000190000001a0000001d000000
+  AutoSyncSelection: 0
+  autoPopulateEnabled: 1
+  currentDataSource: 1
+  CurrentPluginConfig: 
