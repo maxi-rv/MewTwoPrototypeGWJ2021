@@ -52,7 +52,7 @@ public class GameController : MonoBehaviour
     void Update()
     {
         //Press Enter to Start
-        if(true && !onPlayingLevel) //(Input.GetKey(KeyCode.Return) && !onPlayingLevel)
+        if(Input.GetKey(KeyCode.Return) && !onPlayingLevel)
         {
             //Loads first Scene
             currentSceneName = firstSceneName;

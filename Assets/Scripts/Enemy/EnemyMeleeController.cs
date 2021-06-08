@@ -13,6 +13,7 @@ public class EnemyMeleeController : MonoBehaviour
     [SerializeField] private Collider2D hitBox;
     [SerializeField] private Collider2D hurtBox;
     [SerializeField] private Collider2D pushBox;
+    [SerializeField] private DamageInfo damageInfo;
     [SerializeField] private CheckHit checkHit;
     [SerializeField] private CheckGround checkGround;
     [SerializeField] private Material matDefault;
@@ -23,8 +24,9 @@ public class EnemyMeleeController : MonoBehaviour
     // VARIABLES
     [SerializeField] private float maxHP;
     [SerializeField] private float currentHP;
+    [SerializeField] private float meleeDamage;
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float hurtForce;
+    private float hurtForce;
     private bool onTheGround;
     private bool attacking;
 
@@ -45,6 +47,8 @@ public class EnemyMeleeController : MonoBehaviour
         // Initializes Variables
         currentHP = maxHP;
         attacking = false;
+
+        damageInfo.damage = meleeDamage;
     }
 
     void FixedUpdate()
@@ -96,7 +100,8 @@ public class EnemyMeleeController : MonoBehaviour
     private void GetHurt()
     {
         checkHit.isHurt = false;
-        currentHP--;
+        currentHP = currentHP - checkHit.receivedDamage;
+        checkHit.receivedDamage = 0f;
 
         if(currentHP>0)
         {

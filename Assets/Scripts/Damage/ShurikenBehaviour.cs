@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ShurikenBehaviour : MonoBehaviour
 {
-    public float damage;
     public float rotationSpeed;
     public float destructionTime;
     public float shurikenSpeed;
@@ -37,7 +36,7 @@ public class ShurikenBehaviour : MonoBehaviour
         if(thisTag != other.tag)
         {
             DestroyShuriken();
-            //AkSoundEngine.PostEvent("Shuriken_Hit", gameObject);
+            AkSoundEngine.PostEvent("Shuriken_Hit", gameObject);
         }
     }
 

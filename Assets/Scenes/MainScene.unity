@@ -232,7 +232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8453382052372583592, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
       propertyPath: firstSceneName
-      value: LevelTest
+      value: Level3
       objectReference: {fileID: 0}
     - target: {fileID: 8762752727022628725, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
       propertyPath: m_Name

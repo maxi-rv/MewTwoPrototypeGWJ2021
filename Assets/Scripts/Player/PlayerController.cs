@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Collider2D hurtBox;
     [SerializeField] private Collider2D pushBox;
     [SerializeField] private Collider2D checkTreeBox;
+    [SerializeField] private DamageInfo damageInfo;
     [SerializeField] private CheckHit checkHit;
     [SerializeField] private CheckGround checkGround;
     [SerializeField] private CheckWall checkWall;
@@ -28,21 +29,23 @@ public class PlayerController : MonoBehaviour
     public float currentHP;
     public int shurikenCant;
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float meleeDamage;
+    [SerializeField] private float shurikenDamage;
     [SerializeField] private float jumpForce;
     [SerializeField] private float wallJumpForce;
     [SerializeField] private float shurikenSpeed;
     [SerializeField] private float treeJumpForce;
     [SerializeField] private float hurtForce;
     private int platformInstanceID;
-    [SerializeField] private bool secondJumpAvailable;
-    [SerializeField] private bool wallJumpAvailable;
-    [SerializeField] private bool climbTreeAvailable;
-    [SerializeField] private bool onTheGround;
-    [SerializeField] private bool againstWall;
+    private bool secondJumpAvailable;
+    private bool wallJumpAvailable;
+    private bool climbTreeAvailable;
+    private bool onTheGround;
+    private bool againstWall;
     private bool overATree;
     private bool climbingTree;
-    [SerializeField] private bool attacking;
-    [SerializeField] private bool isHurt;
+    private bool attacking;
+    private bool isHurt;
 
     // INPUT VARIABLES
     private float horizontalAxis;
@@ -73,6 +76,9 @@ public class PlayerController : MonoBehaviour
         climbingTree = false;
         attacking = false;
         isHurt = false;
+
+        damageInfo.damage = meleeDamage;
+        shurikenPrefab.GetComponent<DamageInfo>().damage = shurikenDamage;
     }
 
     // FixedUpdate is called multiple times per frame.
@@ -363,7 +369,8 @@ public class PlayerController : MonoBehaviour
     {
         checkHit.isHurt = false;
         disableHurtBox();
-        currentHP--;
+        currentHP = currentHP - checkHit.receivedDamage;
+        checkHit.receivedDamage = 0f;
         isHurt = true;
 
         if(currentHP>0)
@@ -457,9 +464,10 @@ public class PlayerController : MonoBehaviour
     // Instantiates a PlayerShuriken and shoots it on the direction the player is facing.
     public void ShootShuriken()
     {
+        Quaternion shurikenRotation = new Quaternion(0f, 0f, 0f, 0f);
+
         if(spriteRenderer.flipX == true) //DISPARA A LA IZQUIERDA
         {
-            Quaternion shurikenRotation = new Quaternion(0f, 0f, 0f, 0f);
             shurikenRotation.eulerAngles = new Vector3(0f, 0f, 90f);
             Vector2 plusVector = new Vector2(-0.3f, 0.14f);
 
@@ -470,7 +478,6 @@ public class PlayerController : MonoBehaviour
         }
         else //DISPARA A LA DERECHA
         {
-            Quaternion shurikenRotation = new Quaternion(0f, 0f, 0f, 0f);
             shurikenRotation.eulerAngles = new Vector3(0f, 0f, 270f);
             Vector2 plusVector = new Vector2(0.3f, 0.14f);
 
@@ -479,7 +486,6 @@ public class PlayerController : MonoBehaviour
             shuriken.velocity = new Vector2(1f, 0f);
             shuriken.shurikenSpeed = shurikenSpeed;
         }
-        
     }
 
     public void playSFX(string name)
