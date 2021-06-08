@@ -7,6 +7,7 @@ public class CheckHit : MonoBehaviour
     // VARIABLES
     public bool isHurt;
     private string thisCharTag;
+    public string otherTag;
 
     // Awake is called when the script instance is being loaded.
     void Awake()
@@ -22,6 +23,17 @@ public class CheckHit : MonoBehaviour
         if(!other.gameObject.CompareTag(thisCharTag))
         {
             isHurt = true;
+            otherTag = other.tag;
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        //Compares the hitbox tag with its own tag.
+        if(!other.gameObject.CompareTag(thisCharTag))
+        {
+            isHurt = true;
+            otherTag = other.tag;
         }
     }
 }

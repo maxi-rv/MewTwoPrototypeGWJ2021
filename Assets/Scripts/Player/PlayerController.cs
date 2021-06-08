@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rigidBody2D;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    [SerializeField] private GameObject audioController;
     [SerializeField] private Collider2D hitBox;
     [SerializeField] private Collider2D hurtBox;
     [SerializeField] private Collider2D pushBox;
@@ -33,15 +34,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float treeJumpForce;
     [SerializeField] private float hurtForce;
     private int platformInstanceID;
-    private bool secondJumpAvailable;
-    private bool wallJumpAvailable;
-    private bool climbTreeAvailable;
-    private bool onTheGround;
-    private bool againstWall;
+    [SerializeField] private bool secondJumpAvailable;
+    [SerializeField] private bool wallJumpAvailable;
+    [SerializeField] private bool climbTreeAvailable;
+    [SerializeField] private bool onTheGround;
+    [SerializeField] private bool againstWall;
     private bool overATree;
     private bool climbingTree;
-    private bool attacking;
-    private bool isHurt;
+    [SerializeField] private bool attacking;
+    [SerializeField] private bool isHurt;
 
     // INPUT VARIABLES
     private float horizontalAxis;
@@ -125,11 +126,13 @@ public class PlayerController : MonoBehaviour
                 shurikenCant--;
                 attacking = true;
                 animator.SetTrigger("RangedAttacking");
+                playSFX("Shuriken_Throw");
             }
             else if(meleeAttackButton && onTheGround)
             {
                 attacking = true;
                 animator.SetTrigger("MeleeAttacking");
+                playSFX("Sword_Slash");
             }
         }
 
@@ -146,7 +149,6 @@ public class PlayerController : MonoBehaviour
                 rigidBody2D.velocity = new Vector2(0f, 0f);
                 rigidBody2D.gravityScale = 0f;
                 climbingTree = true;
-                //climbTreeAvailable = false;
                 animator.SetBool("Hanging", true);
             }
         }
@@ -309,11 +311,15 @@ public class PlayerController : MonoBehaviour
     {
         rigidBody2D.velocity = new Vector2(rigidBody2D.velocity.x, 0f);
         rigidBody2D.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+
         checkGround.onTheGround = false;
         onTheGround = false;
+
         animator.SetBool("JumpingStart", false);
         animator.SetBool("Jumping", true);
         animator.SetBool("Falling", false);
+
+        playSFX("Player_Jump");
     }
 
     // Adds an inclined force to the player.
@@ -326,6 +332,8 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Jumping", true);
         animator.SetBool("Falling", false);
         FlipSprite(sign);
+
+        playSFX("Player_Walljump");
     }
 
     public void TreeJump()
@@ -337,6 +345,8 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Jumping", true);
         animator.SetBool("Falling", false);
         animator.SetBool("Hanging", false);
+
+        playSFX("Player_Jump");
     }
 
     // Checks if the HurtBox has collided with a HitBox from another Object.
@@ -360,6 +370,7 @@ public class PlayerController : MonoBehaviour
         {
             isHurt = true;
             animator.SetTrigger("Damaged");
+            
             FlashWhite();
             Invoke("FlashBack", 0.1f);
             Invoke("FlashWhite", 0.2f);
@@ -376,6 +387,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger("Damaged");
             animator.SetBool("Dead", true);
+            playSFX("Player_Death");
         }
 
         rigidBody2D.velocity = new Vector2(0f, 0f);
@@ -468,5 +480,10 @@ public class PlayerController : MonoBehaviour
             shuriken.shurikenSpeed = shurikenSpeed;
         }
         
+    }
+
+    public void playSFX(string name)
+    {    
+        AkSoundEngine.PostEvent(name, audioController);
     }
 }

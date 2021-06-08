@@ -52,7 +52,7 @@ public class EnemyMeleeController : MonoBehaviour
         CheckHit();
         CheckGround();
 
-
+        
     }
 
     // Flips the sprite on the X Axis according to the Axis input.

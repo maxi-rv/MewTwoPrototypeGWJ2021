@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cf32a70fceb182489070b9365d0fac7, type: 3}
+  m_Name: 89850F1F-2167-48DC-B2D7-91A9EAC35FEB
+  m_EditorClassIdentifier: 
+  objectName: Player_Climb
+  id: 3549554524
+  guid: 89850F1F-2167-48DC-B2D7-91A9EAC35FEB

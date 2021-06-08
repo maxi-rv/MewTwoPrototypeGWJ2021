@@ -33,8 +33,13 @@ public class GameController : MonoBehaviour
         
         DontDestroyOnLoad(gameObject);
 
+        //Preparing first message
         onPlayingLevel = false;
         uiController.showStartMessage();
+
+        //Preparing Game Music Event and State
+        AkSoundEngine.SetState("Dead_Or_Alive", "None");
+        AkSoundEngine.PostEvent("Game_Music", gameObject);
     }
 
     void Start() 
@@ -47,12 +52,13 @@ public class GameController : MonoBehaviour
     void Update()
     {
         //Press Enter to Start
-        if(Input.GetKey(KeyCode.Return) && !onPlayingLevel)
+        if(true && !onPlayingLevel) //(Input.GetKey(KeyCode.Return) && !onPlayingLevel)
         {
             //Loads first Scene
             currentSceneName = firstSceneName;
             loadScene(currentSceneName);
             onPlayingLevel = true;
+            
 
             //Instantiates player
             instantiatePlayer();
@@ -63,6 +69,9 @@ public class GameController : MonoBehaviour
             uiController.currentHP = playerController.currentHP;
             uiController.enableShurikenCounter();
             uiController.setShurikenCounter(playerController.shurikenCant);
+
+            //Set Wwise state for Game Music
+            AkSoundEngine.SetState("Dead_Or_Alive", "Alive");
         }
         else if(onPlayingLevel) //While playing a level
         {
@@ -74,15 +83,23 @@ public class GameController : MonoBehaviour
             {
                 if (playerIsDead && Input.GetKey(KeyCode.Return))
                 {
+                    //Resets the current level
                     uiController.disableMessage();
                     destroyPlayer();
                     reloadScene(currentSceneName);
                     instantiatePlayer();
+
+                    //Set Wwise state for Game Music
+                    AkSoundEngine.SetState("Dead_Or_Alive", "Alive");
                 }
                 else
-                {
+                {   
+                    //Shows retry message
                     uiController.showRetryMessage();
                     playerIsDead = true;
+
+                    //Set Wwise state for Game Music
+                    AkSoundEngine.SetState("Dead_Or_Alive", "Dead");
                 }
             }
         }     
@@ -94,6 +111,7 @@ public class GameController : MonoBehaviour
         Vector3 position = new Vector3(0f, 0f, 0f);
         Quaternion rotation = new Quaternion(0f, 0f, 0f, 0f);
         playerInstance = Instantiate(playerPrefab, position, rotation);
+        playerInstance.GetComponent<Rigidbody2D>().velocity = new Vector2(0f,0f);
 
         // Setting some variables
         playerController = playerInstance.GetComponent<PlayerController>();
