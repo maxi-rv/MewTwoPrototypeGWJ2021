@@ -434,8 +434,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targets: []
-  verticalLimitUp: 10
-  verticalLimitDown: -5
+  verticalLimitUp: 3
+  verticalLimitDown: 1
   delayToCenter: 0
   offset: {x: 0, y: 0, z: 0}
 --- !u!114 &4737851644636277701
@@ -742,7 +742,7 @@ MonoBehaviour:
   uiController: {fileID: 9196381737433922699}
   cameraController: {fileID: 284206515395669281}
   playerPrefab: {fileID: 4721134543759675922, guid: e4781bce0df3f2b4690ce9c3831df980, type: 3}
-  firstSceneName: Level1
+  firstSceneName: Level3
 --- !u!114 &7376333813289143193
 MonoBehaviour:
   m_ObjectHideFlags: 0
