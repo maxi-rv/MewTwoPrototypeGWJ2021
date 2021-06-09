@@ -434,8 +434,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targets: []
-  verticalLimitUp: 3
-  verticalLimitDown: 1
+  verticalLimitUp: 0
+  verticalLimitDown: -1.2
   delayToCenter: 0
   offset: {x: 0, y: 0, z: 0}
 --- !u!114 &4737851644636277701
