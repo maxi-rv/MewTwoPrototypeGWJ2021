@@ -703,7 +703,6 @@ GameObject:
   - component: {fileID: 8453382052372583592}
   - component: {fileID: 7376333813289143193}
   - component: {fileID: 8897540433498952689}
-  - component: {fileID: 553137294804722079}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -742,7 +741,7 @@ MonoBehaviour:
   uiController: {fileID: 9196381737433922699}
   cameraController: {fileID: 284206515395669281}
   playerPrefab: {fileID: 4721134543759675922, guid: e4781bce0df3f2b4690ce9c3831df980, type: 3}
-  firstSceneName: Level3
+  firstSceneName: Level1
 --- !u!114 &7376333813289143193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,37 +788,3 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0, z: 0}
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
---- !u!114 &553137294804722079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8762752727022628725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 046daa973cca7f345b50016d6263e694, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerList: 
-  useOtherObject: 0
-  actionOnEventType: 0
-  curveInterpolation: 4
-  enableActionOnEvent: 0
-  data:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 0602e5dedfd709e469dec5cc5cca2ea8, type: 2}
-  useCallbacks: 0
-  Callbacks: []
-  playingId: 0
-  soundEmitterObject: {fileID: 0}
-  transitionDuration: 0
-  eventIdInternal: 0
-  valueGuidInternal: 
-  m_callbackDataInternal: {fileID: 0}
-  MultiPositionType: 1
-  multiPositionTypeLabel: 0
-  attenuationSphereColor: {r: 1, g: 0, b: 0, a: 0.1}
-  LargeModePositions: []
-  multiPositionArray: []

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Koffie.SimpleTasks; //GRACIAS MARTIN!
 
 public class EnemyMeleeController : MonoBehaviour
 {
@@ -21,16 +22,24 @@ public class EnemyMeleeController : MonoBehaviour
     [SerializeField] private Material matWhite;
     [SerializeField] private PoofBehaviour poofPrefab;
     [SerializeField] private LogBehaviour logPrefab;
+    [SerializeField] private LayerMask playerLayer;
+    private STask stopAttackTask;
 
     // VARIABLES
     [SerializeField] private float maxHP;
-    [SerializeField] private float currentHP;
+    private float currentHP;
     [SerializeField] private float meleeDamage;
-    [SerializeField] private float moveSpeed;
+    [SerializeField] private float detectionRange;
+    [SerializeField] private float attackRange;
     [SerializeField] private float attackForce;
+    [SerializeField] private float attackForceVertical;
+    [SerializeField] private float AttackCooldown;
     [SerializeField] private float hurtForce;
     private bool onTheGround;
+    private bool beginAttack;
     private bool attacking;
+    private bool onCooldown;
+    [SerializeField] private bool CanAttack;
 
     // Start is called before the first frame update
     void Awake()
@@ -48,7 +57,9 @@ public class EnemyMeleeController : MonoBehaviour
 
         // Initializes Variables
         currentHP = maxHP;
+        beginAttack = false;
         attacking = false;
+        onCooldown = false;
 
         damageInfo.damage = meleeDamage;
     }
@@ -62,25 +73,56 @@ public class EnemyMeleeController : MonoBehaviour
 
     private void CheckForPlayer()
     {
-        int layerMask = LayerMask.GetMask("PushBox");
-        Vector3 origin = gameObject.transform.position;
+        //Fixing the x axis of the object, because the sprite is not centered.
+        float xAligner = 0f;
+        if(spriteRenderer.flipX==false)
+                xAligner = -0.15f;
+            else
+                xAligner = 0.15f;
 
-        //Check for player on the Left
-        RaycastHit2D targetLeft = Physics2D.Raycast(origin, Vector2.left, 5f, layerMask);
-        //Check for player on the Right
-        RaycastHit2D targetRight = Physics2D.Raycast(origin, Vector2.right, 5f, layerMask);
+        //Sets origin point for raycasting
+        Vector3 origin = new Vector3(transform.position.x+xAligner, transform.position.y, transform.position.z);
 
-        if(targetLeft.collider.gameObject.tag == "Player")
-        { 
-            rigidBody2D.AddForce(new Vector2(-attackForce, 0f), ForceMode2D.Impulse);
-            animator.SetTrigger("Attacking");
-            FlipSprite(-1f);
-        }
-        else if(targetRight.transform.tag == "Player")
+        Collider2D col = Physics2D.OverlapCircle(origin, this.detectionRange, playerLayer);
+        
+
+        if (col != null && !onCooldown)
         {
-            rigidBody2D.AddForce(new Vector2(attackForce, 0f), ForceMode2D.Impulse);
-            animator.SetTrigger("Attacking");
-            FlipSprite(1f);
+            Debug.Log(col.name);
+
+            bool isMelee = Vector2.Distance(col.transform.position, origin) < attackRange;
+            float direction = -Mathf.Sign(origin.x - col.transform.position.x);
+
+            if(isMelee)
+            {
+                if(!attacking)
+                {
+                    animator.SetTrigger("Attacking");
+                    attacking = true;
+                }
+            }
+            else if(onTheGround)
+            {
+                if(!beginAttack)
+                {
+                    rigidBody2D.velocity = Vector2.zero;
+                    rigidBody2D.AddForce(new Vector2(attackForce*direction, attackForceVertical), ForceMode2D.Impulse);
+                    FlipSprite(direction);
+                    animator.SetBool("BeginAttack", true);
+                    beginAttack = true;
+                    attacking = false;
+                }
+            }
+        }
+        else
+        {
+            if(beginAttack && onTheGround)
+            {
+                animator.SetBool("BeginAttack", false);
+                beginAttack = false;
+                attacking = false;
+                rigidBody2D.velocity = Vector2.zero;
+            }
         }
     }
 
@@ -189,6 +231,13 @@ public class EnemyMeleeController : MonoBehaviour
 
     public void StopAttack()
     {
+        stopAttackTask?.Kill();
+        stopAttackTask = STasks.Do(() => onCooldown = false, after: AttackCooldown);
+
+        onCooldown = true;
+        beginAttack = false;
         attacking = false;
+        rigidBody2D.velocity = new Vector2(0f, 0f);
+        animator.SetBool("BeginAttack", false);
     }
 }

@@ -56,7 +56,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.37}
+  m_Size: {x: 0.12, y: 0.3}
   m_EdgeRadius: 0
 --- !u!114 &1451848241075823620
 MonoBehaviour:
@@ -270,11 +270,18 @@ MonoBehaviour:
   matWhite: {fileID: 2100000, guid: 30d4f2b9a13631745a04440c8a4b4dad, type: 2}
   poofPrefab: {fileID: 8144142502428123615, guid: d4c3fd0a3e4b4b04a9050d11bea8592d, type: 3}
   logPrefab: {fileID: 3616715516114462540, guid: 532602667f522304fb59f96179bc414f, type: 3}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 128
   maxHP: 2
-  currentHP: 0
-  meleeDamage: 2
-  moveSpeed: 10
+  meleeDamage: 1
+  detectionRange: 2
+  attackRange: 0.75
+  attackForce: 3.5
+  attackForceVertical: 5
+  AttackCooldown: 2
   hurtForce: 0
+  CanAttack: 1
 --- !u!95 &2435537898265728175
 Animator:
   serializedVersion: 3
@@ -310,10 +317,10 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 3
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1acb97ec309b72c4781a9abe3e362908, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!1 &6689868880396551527
 GameObject:
@@ -359,8 +366,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.145, y: -0.026}
-  m_Size: {x: 0.26, y: 0.416}
+  m_Offset: {x: -0.15, y: -0.025}
+  m_Size: {x: 0.25, y: 0.42}
   m_Direction: 0
 --- !u!1 &6824147975113378356
 GameObject:
@@ -373,7 +380,7 @@ GameObject:
   - component: {fileID: 1619445735482248070}
   - component: {fileID: 6320361256135126718}
   - component: {fileID: 3375990185580226406}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CheckGround
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -407,7 +414,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.174, y: -0.225}
+  m_Offset: {x: -0.175, y: -0.225}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -418,7 +425,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.28, y: 0.058}
+  m_Size: {x: 0.2, y: 0.1}
   m_EdgeRadius: 0
 --- !u!114 &3375990185580226406
 MonoBehaviour:

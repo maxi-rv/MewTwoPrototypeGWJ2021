@@ -13,9 +13,13 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID AMBIENTE1 = 1014953605U;
+        static const AkUniqueID AMBIENTE2 = 1014953606U;
         static const AkUniqueID ENEMY_DEATH = 1205999388U;
         static const AkUniqueID GAME_MUSIC = 258110631U;
+        static const AkUniqueID LOG = 545371381U;
         static const AkUniqueID PLAYER_CLIMB = 3549554524U;
+        static const AkUniqueID PLAYER_DAMAGE = 2074073782U;
         static const AkUniqueID PLAYER_DEATH = 3083087645U;
         static const AkUniqueID PLAYER_JUMP = 1305133589U;
         static const AkUniqueID PLAYER_JUTSU = 2489942206U;
@@ -38,7 +42,9 @@ namespace AK
                 static const AkUniqueID ALIVE = 655265632U;
                 static const AkUniqueID BOSS = 1560169506U;
                 static const AkUniqueID DEAD = 2044049779U;
+                static const AkUniqueID LEVEL3 = 2678230380U;
                 static const AkUniqueID NONE = 748895195U;
+                static const AkUniqueID TUTORIAL = 3762955427U;
             } // namespace STATE
         } // namespace DEAD_OR_ALIVE
 

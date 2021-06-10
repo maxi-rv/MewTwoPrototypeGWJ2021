@@ -24,6 +24,7 @@ public class CheckGround : MonoBehaviour
             onTheGround = true;
             otherTag = other.gameObject.tag;
             otherInstanceID = other.gameObject.GetInstanceID();
+            AkSoundEngine.PostEvent("Walking", gameObject);
         }
     }
 }

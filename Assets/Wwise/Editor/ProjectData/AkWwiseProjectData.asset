@@ -359,8 +359,42 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 8d90199323c1754ea80f5ad115f182ba
     GuidInternal: 
-    m_lastTime: -8585785020345905036
+    m_lastTime: -8585783226637367309
     List:
+    - name: Ambiente1
+      guid: 05596bc0eb7f064cb9ece45d4642f936
+      id: 1014953605
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 8d90199323c1754ea80f5ad115f182ba
+      - ElementName: Ambiente1
+        ObjectType: 3
+        guid: 05596bc0eb7f064cb9ece45d4642f936
+      Path: Events\Default Work Unit\Ambiente1
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Ambiente2
+      guid: a17e80bf3abe5542b7305b03af9bbde0
+      id: 1014953606
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 8d90199323c1754ea80f5ad115f182ba
+      - ElementName: Ambiente2
+        ObjectType: 3
+        guid: a17e80bf3abe5542b7305b03af9bbde0
+      Path: Events\Default Work Unit\Ambiente2
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Enemy_Death
       guid: ccb040e04d93d845872b898fc067945c
       id: 1205999388
@@ -376,8 +410,8 @@ MonoBehaviour:
         guid: ccb040e04d93d845872b898fc067945c
       Path: Events\Default Work Unit\Enemy_Death
       maxAttenuation: 0
-      maxDuration: 1.668563
-      minDuration: 1.249313
+      maxDuration: 1
+      minDuration: 1
     - name: Game_Music
       guid: fcac55db07a1914b9343f0d20c1c1d93
       id: 258110631
@@ -395,6 +429,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: Log
+      guid: 487a39349aaace448f5b29e1b7b95906
+      id: 545371381
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 8d90199323c1754ea80f5ad115f182ba
+      - ElementName: Log
+        ObjectType: 3
+        guid: 487a39349aaace448f5b29e1b7b95906
+      Path: Events\Default Work Unit\Log
+      maxAttenuation: 0
+      maxDuration: 2
+      minDuration: 1.5
     - name: Player_Climb
       guid: 1f0f85896721dc48b2d791a9eac35feb
       id: 3549554524
@@ -410,8 +461,25 @@ MonoBehaviour:
         guid: 1f0f85896721dc48b2d791a9eac35feb
       Path: Events\Default Work Unit\Player_Climb
       maxAttenuation: 0
-      maxDuration: 0.99925
+      maxDuration: Infinity
       minDuration: 0.99925
+    - name: Player_Damage
+      guid: 9b5f8c9cbac2a44686869043fcd384db
+      id: 2074073782
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 8d90199323c1754ea80f5ad115f182ba
+      - ElementName: Player_Damage
+        ObjectType: 3
+        guid: 9b5f8c9cbac2a44686869043fcd384db
+      Path: Events\Default Work Unit\Player_Damage
+      maxAttenuation: 0
+      maxDuration: 0.469896
+      minDuration: 0.272583
     - name: Player_Death
       guid: e962f02e879f69468c7698c4215b7e7a
       id: 3083087645
@@ -546,7 +614,7 @@ MonoBehaviour:
         guid: 7cbcbc11543fe547b6262d33df14cca4
       Path: Events\Default Work Unit\Sword_Slash
       maxAttenuation: 0
-      maxDuration: 0.434875
+      maxDuration: Infinity
       minDuration: 0.297
     - name: Walking
       guid: 8b53ccc59f30ef44aed5b033d8e16eb6
@@ -563,8 +631,8 @@ MonoBehaviour:
         guid: 8b53ccc59f30ef44aed5b033d8e16eb6
       Path: Events\Default Work Unit\Walking
       maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
+      maxDuration: 0.946235
+      minDuration: 0.488937
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     PathAndIcons:
@@ -605,7 +673,7 @@ MonoBehaviour:
     ParentPath: States\Default Work Unit
     guid: a633b1117ec04a4a860f0babb6ba64e7
     GuidInternal: 
-    m_lastTime: -8585785860497216984
+    m_lastTime: -8585783226637327375
     List:
     - name: Dead_Or_Alive
       guid: 5ce3fa0434297642ae199e4078c5f11f
@@ -670,6 +738,22 @@ MonoBehaviour:
         - ElementName: Dead
           ObjectType: 8
           guid: d9e613e40bc4694ab4b9b8f9f0296e41
+      - name: Level3
+        guid: 4413f823f6bf1f40a853d29370f56bc4
+        id: 2678230380
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: a633b1117ec04a4a860f0babb6ba64e7
+        - ElementName: Dead_Or_Alive
+          ObjectType: 9
+          guid: 5ce3fa0434297642ae199e4078c5f11f
+        - ElementName: Level3
+          ObjectType: 8
+          guid: 4413f823f6bf1f40a853d29370f56bc4
       - name: None
         guid: 57ca0fac3d5d754cae6b3747538ee5a1
         id: 748895195
@@ -686,6 +770,22 @@ MonoBehaviour:
         - ElementName: None
           ObjectType: 8
           guid: 57ca0fac3d5d754cae6b3747538ee5a1
+      - name: Tutorial
+        guid: 6dad2658295a5a48898381e145999b20
+        id: 3762955427
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: a633b1117ec04a4a860f0babb6ba64e7
+        - ElementName: Dead_Or_Alive
+          ObjectType: 9
+          guid: 5ce3fa0434297642ae199e4078c5f11f
+        - ElementName: Tutorial
+          ObjectType: 8
+          guid: 6dad2658295a5a48898381e145999b20
       ValueGuids: []
       ValueIcons: []
       valuesInternal: []
@@ -717,7 +817,7 @@ MonoBehaviour:
     GuidInternal: 
     m_lastTime: -8585798034102731527
     List: []
-  ExpandedFileSystemItemIds: 02000000100000001200000013000000190000001a0000001d0000001f000000
+  ExpandedFileSystemItemIds: 0200000003000000100000001200000013000000190000001a0000001d00000020000000
   ExpandedWaapiItemIds: 02000000030000001200000013000000190000001a0000001d000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1

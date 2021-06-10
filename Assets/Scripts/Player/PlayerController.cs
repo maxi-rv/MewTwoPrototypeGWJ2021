@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rigidBody2D;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
-    [SerializeField] private GameObject audioController;
     [SerializeField] private Collider2D hitBox;
     [SerializeField] private Collider2D hurtBox;
     [SerializeField] private Collider2D pushBox;
@@ -377,6 +376,7 @@ public class PlayerController : MonoBehaviour
         {
             isHurt = true;
             animator.SetTrigger("Damaged");
+            playSFX("Player_Damage");
             
             FlashWhite();
             Invoke("FlashBack", 0.1f);
@@ -490,6 +490,6 @@ public class PlayerController : MonoBehaviour
 
     public void playSFX(string name)
     {    
-        AkSoundEngine.PostEvent(name, audioController);
+        AkSoundEngine.PostEvent(name, gameObject);
     }
 }
