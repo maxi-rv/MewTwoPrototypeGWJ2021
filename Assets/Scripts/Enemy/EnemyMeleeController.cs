@@ -52,9 +52,6 @@ public class EnemyMeleeController : MonoBehaviour
         //Getting the dafault material for later use.
         matDefault = spriteRenderer.material;
 
-        //Initializes RayCast2D
-        //searchPlayer = !!!
-
         // Initializes Variables
         currentHP = maxHP;
         beginAttack = false;
@@ -84,9 +81,8 @@ public class EnemyMeleeController : MonoBehaviour
         Vector3 origin = new Vector3(transform.position.x+xAligner, transform.position.y, transform.position.z);
 
         Collider2D col = Physics2D.OverlapCircle(origin, this.detectionRange, playerLayer);
-        
 
-        if (col != null && !onCooldown)
+        if (col != null && !onCooldown && CanAttack)
         {
             Debug.Log(col.name);
 
@@ -194,7 +190,7 @@ public class EnemyMeleeController : MonoBehaviour
                 position = position + new Vector3(0.15f,0f,0f);
 
             Instantiate(poofPrefab, position, rotation);
-            //Instantiate(logPrefab, position, logPrefab.gameObject.transform.rotation);
+            Instantiate(logPrefab, position, logPrefab.gameObject.transform.rotation);
             GameObject.Destroy(gameObject);
         }
 
