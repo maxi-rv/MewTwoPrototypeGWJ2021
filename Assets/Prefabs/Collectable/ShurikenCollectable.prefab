@@ -69,6 +69,7 @@ GameObject:
   - component: {fileID: 6194099854710804365}
   - component: {fileID: 8308412865491910384}
   - component: {fileID: 7064762583791021868}
+  - component: {fileID: -1771934739055809257}
   m_Layer: 11
   m_Name: ShurikenCollectable
   m_TagString: Ammo
@@ -132,7 +133,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b325324dcee4f6146b691b950ffcf10f, type: 3}
+  m_Sprite: {fileID: -4709372960897199689, guid: c2da2f3c50a8dab4092280113619b302, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -171,3 +172,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dab73b61bf5fd324085371bf2a60f818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationSpeed: 5
+--- !u!95 &-1771934739055809257
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8725017582454307098}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eae52573dea900a46b6fd32ae155dd5f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -11,6 +11,8 @@ TagManager:
   - Platform
   - Food
   - Ammo
+  - CheckPoint
+  - LevelController
   layers:
   - Default
   - TransparentFX
@@ -25,8 +27,8 @@ TagManager:
   - PushBoxEnemy
   - PushBoxCollectable
   - PushBoxEnviroment
-  - 
-  - 
+  - Log
+  - Projectile
   - 
   - 
   - 

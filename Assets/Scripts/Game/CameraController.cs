@@ -9,8 +9,10 @@ public class CameraController : MonoBehaviour
     
     // VARIABLES
     public List<Transform> targets;
-    [SerializeField] private float verticalLimitUp;
-    [SerializeField] private float verticalLimitDown;
+    public float verticalLimitUp;
+    public float verticalLimitDown;
+    public float horizontalLimitLeft;
+    public float horizontalLimitRight;
     [SerializeField] private float delayToCenter;
     private float maxZoom;
     private float minZoom;
@@ -81,6 +83,16 @@ public class CameraController : MonoBehaviour
         else if(desiredPosition.y < verticalLimitDown)
         {
             desiredPosition = new Vector3(desiredPosition.x, verticalLimitDown, desiredPosition.z);
+        }
+
+        //Adjusts the camera to the horizontal limits
+        if(desiredPosition.x > horizontalLimitRight)
+        {
+            desiredPosition = new Vector3(horizontalLimitRight, desiredPosition.y, desiredPosition.z);
+        }
+        else if(desiredPosition.x < horizontalLimitLeft)
+        {
+            desiredPosition = new Vector3(horizontalLimitLeft, desiredPosition.y, desiredPosition.z);
         }
 
         //Moves the camera from the CurrentPosition to the desiredPosition

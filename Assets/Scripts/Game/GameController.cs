@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Koffie.SimpleTasks;
 
 public class GameController : MonoBehaviour
 {
@@ -11,15 +12,22 @@ public class GameController : MonoBehaviour
     //COMPONENTS
     [SerializeField] private UIController uiController;
     [SerializeField] private CameraController cameraController;
+    public LevelController levelController;
+
+    //Wwise Event IDs
+    private uint gameMusicID;
+    private uint ambient1ID;
+    private uint ambient2ID;
     
     //VARIABLES
     [SerializeField] private GameObject playerPrefab;
-    [SerializeField] private string firstSceneName;
     private PlayerController playerController;
     private GameObject playerInstance;  
     private string currentSceneName;
     private bool onPlayingLevel;
     private bool playerIsDead;
+    private int currentLevel;
+    private bool playerSpawnPositionSetted;
 
     void Awake()
     {
@@ -35,50 +43,71 @@ public class GameController : MonoBehaviour
 
         //Preparing first message
         onPlayingLevel = false;
+        playerSpawnPositionSetted = false;
+        currentLevel = -1;
         uiController.showStartMessage();
 
         //Preparing Game Music Event and State
         AkSoundEngine.SetState("Dead_Or_Alive", "None");
-        AkSoundEngine.PostEvent("Game_Music", gameObject);
+        gameMusicID = AkSoundEngine.PostEvent("Game_Music", gameObject);
     }
 
     void Start() 
     {
-        //Wwise
-        //AkSoundEngine.SetState("Dead_Or_Alive", "Alive");
+        
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {   
         //Press Enter to Start
-        if(Input.GetKey(KeyCode.Return) && !onPlayingLevel)
+        if(Input.GetKey(KeyCode.Return) && !onPlayingLevel && currentLevel!=0)
         {
-            //Loads first Scene
-            currentSceneName = firstSceneName;
-            loadScene(currentSceneName);
-            onPlayingLevel = true;
-            
+            currentLevel = 0;
+            uiController.playFade();
 
-            //Instantiates player
-            instantiatePlayer();
-
-            //Updates HUD
-            uiController.disableMessage();
-            uiController.activateBar();
-            uiController.currentHP = playerController.currentHP;
-            uiController.enableShurikenCounter();
-            uiController.setShurikenCounter(playerController.shurikenCant);
-
-            //Set Wwise state for Game Music
-            AkSoundEngine.SetState("Dead_Or_Alive", "Alive");
+            STasks.Do(() => loadIntroScene(), after: 1.0f);
+            STasks.Do(() => uiController.playFade(), after: 21.0f);
+            STasks.Do(() => loadFirstLevel(), after: 22.0f);
         }
         else if(onPlayingLevel) //While playing a level
         {
+            if(levelController!=null && !playerSpawnPositionSetted)
+            {
+                setPlayerPosition(levelController.getSpawnPoint());
+                playerSpawnPositionSetted = true;
+            }
+
             uiController.currentHP = playerController.currentHP;
             uiController.setShurikenCounter(playerController.shurikenCant);
 
-            //Player Dies
+            //Check if player finishes current level!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            if(levelController!=null && levelController.playerReachedEnd)
+            {
+                levelController.playerReachedEnd = false;
+                levelController = null;
+
+                if(currentLevel==1)
+                {
+                    uiController.playFade();
+                    //STasks.Do(() => unloadScene(currentSceneName), after: 1.0f);
+                    //STasks.Do(() => loadSecondLevel(), after: 1.05f);
+                    STasks.Do(() => unloadScene(currentSceneName), after: 1.0f);
+                    STasks.Do(() => loadThirdLevel(), after: 1.05f);
+                }
+                if(currentLevel==2)
+                {
+                    uiController.playFade();
+                    STasks.Do(() => unloadScene(currentSceneName), after: 1.0f);
+                    STasks.Do(() => loadThirdLevel(), after: 1.05f);
+                }
+                if(currentLevel==3)
+                {
+                    //????
+                }
+            }
+
+            //if Player Dies
             if(playerController.currentHP <= 0)
             {
                 if (playerIsDead && Input.GetKey(KeyCode.Return))
@@ -86,11 +115,31 @@ public class GameController : MonoBehaviour
                     //Resets the current level
                     uiController.disableMessage();
                     destroyPlayer();
+                    levelController = null;
                     reloadScene(currentSceneName);
+
+                    //Instantiates player and sets its position
                     instantiatePlayer();
+                    if(levelController!=null && !playerSpawnPositionSetted)
+                    {
+                        setPlayerPosition(levelController.getSpawnPoint());
+                        playerSpawnPositionSetted = true;
+                    }
 
                     //Set Wwise state for Game Music
-                    AkSoundEngine.SetState("Dead_Or_Alive", "Alive");
+                    if(currentLevel==1)
+                    {
+                        AkSoundEngine.SetState("Dead_Or_Alive", "Tutorial");
+                    }  
+                    else if(currentLevel==2)
+                    {
+                        AkSoundEngine.SetState("Dead_Or_Alive", "Alive");
+                    }     
+                    else if(currentLevel==3)
+                    {
+                        AkSoundEngine.SetState("Dead_Or_Alive", "Level3");
+                    }
+                        
                 }
                 else
                 {   
@@ -103,6 +152,79 @@ public class GameController : MonoBehaviour
                 }
             }
         }     
+    }
+
+    private void loadIntroScene()
+    {
+        //Loads intro Scene
+        currentSceneName = "Intro";
+        loadScene(currentSceneName);
+        
+        //Post intro music Event
+        AkSoundEngine.SetState("Dead_Or_Alive", "Tutorial");
+        gameMusicID = AkSoundEngine.PostEvent("Game_Music", gameObject);
+
+        //Updates HUD
+        uiController.disableMessage();
+    }
+
+    private void loadFirstLevel()
+    {
+        unloadScene(currentSceneName);
+        currentLevel = 1;
+        loadScene("Level"+currentLevel);
+        onPlayingLevel = true;
+
+        //Set Camera
+        cameraController.verticalLimitDown = 1f;
+        cameraController.verticalLimitUp = 3f;
+        cameraController.horizontalLimitRight = 25f;
+        cameraController.horizontalLimitLeft = -2f;
+
+        //Instantiates player and prepares to set its position
+        instantiatePlayer();
+        playerSpawnPositionSetted = false;
+    }
+
+    private void loadSecondLevel()
+    {
+        currentLevel = 2;
+        loadScene("Level"+currentLevel);
+        onPlayingLevel = true;
+
+        //Set Camera
+        //cameraController.gameObject.SetActive(true);
+        //cameraController.verticalLimitDown = 1f;
+        //cameraController.verticalLimitUp = 3f;
+        //cameraController.horizontalLimitRight = 25f;
+        //cameraController.horizontalLimitLeft = -2f;
+
+        //Prepares to set player position
+        playerSpawnPositionSetted = false;
+
+        //Set Wwise state for Game Music
+        AkSoundEngine.SetState("Dead_Or_Alive", "Alive");
+    }
+
+    private void loadThirdLevel()
+    {
+        currentLevel = 3;
+        loadScene("Level"+currentLevel);
+        onPlayingLevel = true;
+
+        //Set Camera
+        cameraController.gameObject.SetActive(true);
+        cameraController.verticalLimitDown = -1.2f;
+        cameraController.verticalLimitUp = 0f;
+        cameraController.horizontalLimitRight = 51f;
+        cameraController.horizontalLimitLeft = 0f;
+
+        //Prepares to set player position
+        playerSpawnPositionSetted = false;
+
+        //Set Wwise state for Game Music
+        AkSoundEngine.SetState("Dead_Or_Alive", "Level3");
+        ambient2ID = AkSoundEngine.PostEvent("Ambiente2", gameObject);
     }
 
     private void instantiatePlayer()
@@ -119,6 +241,8 @@ public class GameController : MonoBehaviour
         uiController.maxHP = playerController.maxHP;
         uiController.currentHP = playerController.currentHP;
         uiController.activateBar();
+        uiController.enableShurikenCounter();
+        uiController.setShurikenCounter(playerController.shurikenCant);
         playerIsDead = false;
     }
 
@@ -142,7 +266,14 @@ public class GameController : MonoBehaviour
 
     private void unloadScene(string scene)
     {
-        destroyPlayer();
         SceneManager.UnloadSceneAsync(scene);
+        
+    }
+
+    //Places Player on SpawnPoint
+    //PLAYER MUST ALREDY BE INSTANTIATED
+    private void setPlayerPosition(Vector3 pos)
+    {
+        playerInstance.transform.position = pos;
     }
 }

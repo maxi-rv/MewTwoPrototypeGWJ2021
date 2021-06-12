@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CollectibleShuriken : MonoBehaviour
 {
+    public float rotationSpeed;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -13,7 +15,7 @@ public class CollectibleShuriken : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Rotate(0f, 0f, rotationSpeed);
     }
 
     void OnTriggerEnter2D(Collider2D other) 

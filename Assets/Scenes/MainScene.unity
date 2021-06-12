@@ -186,74 +186,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 284206515395669281, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: verticalLimitUp
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 284206515395669281, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: verticalLimitDown
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1902739572078301324, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 240
-      objectReference: {fileID: 0}
-    - target: {fileID: 1902739572078301324, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 1902739572078301324, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2012595378179555223, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802864486958263319, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: m_text
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802864486958263319, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: m_isRightToLeft
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4350725100352496251, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6469427875961731045, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 4f6993716194a5c4591193589e6f66ae, type: 3}
-    - target: {fileID: 6469427875961731045, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6469427875961731045, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6469427875961731045, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6915073493629799945, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 1a8e4c746de1b2d4384aad077f87c55c, type: 3}
-    - target: {fileID: 6915073493629799945, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6915073493629799945, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6915073493629799945, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7771101176460181480, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -298,33 +230,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8100388540180007489, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 240
-      objectReference: {fileID: 0}
-    - target: {fileID: 8100388540180007489, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 8453382052372583592, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: firstSceneName
-      value: Level2
-      objectReference: {fileID: 0}
     - target: {fileID: 8762752727022628725, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
       propertyPath: m_Name
       value: GameController
-      objectReference: {fileID: 0}
-    - target: {fileID: 8856979676628289260, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: orthographic
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8856979676628289260, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: field of view
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 8856979676628289260, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
-      propertyPath: m_FOVAxisMode
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}

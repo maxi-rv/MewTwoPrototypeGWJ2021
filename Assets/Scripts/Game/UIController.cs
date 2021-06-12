@@ -10,7 +10,9 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject HPBarFront;
     [SerializeField] private GameObject HPBarBack;
     [SerializeField] private GameObject Message;
+    [SerializeField] private GameObject ShurikenScroll;
     [SerializeField] private GameObject ShurikenCounter;
+    [SerializeField] private GameObject Fader;
     private Image hpBar;
     public float currentHP;
     public float maxHP;
@@ -61,16 +63,23 @@ public class UIController : MonoBehaviour
     public void setShurikenCounter(int count)
     {
         TextMeshProUGUI txt = ShurikenCounter.GetComponent<TextMeshProUGUI>();
-        txt.text = ("Shuriken: "+count);
+        txt.text = count.ToString();
     }
 
     public void enableShurikenCounter()
     {
+        ShurikenScroll.SetActive(true);
         ShurikenCounter.SetActive(true);
     }
 
     public void disableShurikenCounter()
     {
+        ShurikenScroll.SetActive(false);
         ShurikenCounter.SetActive(false);
+    }
+
+    public void playFade()
+    {
+        Fader.GetComponent<Animator>().SetTrigger("Start");
     }
 }
