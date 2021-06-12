@@ -346,13 +346,13 @@ MonoBehaviour:
   maxHP: 5
   currentHP: 0
   shurikenCant: 10
-  moveSpeed: 3.4
+  moveSpeed: 2.6
   meleeDamage: 2
   shurikenDamage: 1
-  jumpForce: 8
+  jumpForce: 8.9
   wallJumpForce: 6.5
   shurikenSpeed: 6
-  treeJumpForce: 6
+  treeJumpForce: 8
   hurtForce: 4
 --- !u!95 &4721134543759675935
 Animator:
