@@ -345,7 +345,7 @@ MonoBehaviour:
   shurikenPrefab: {fileID: 3692352562470081074, guid: eec4354bdcd3b4f44ac6f78198595cac, type: 3}
   maxHP: 5
   currentHP: 0
-  shurikenCant: 15
+  shurikenCant: 10
   moveSpeed: 3.4
   meleeDamage: 2
   shurikenDamage: 1

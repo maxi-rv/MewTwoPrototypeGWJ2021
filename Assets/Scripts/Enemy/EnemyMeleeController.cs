@@ -22,6 +22,8 @@ public class EnemyMeleeController : MonoBehaviour
     [SerializeField] private Material matWhite;
     [SerializeField] private PoofBehaviour poofPrefab;
     [SerializeField] private LogBehaviour logPrefab;
+    [SerializeField] private GameObject shurikenCollectablePrefab;
+    [SerializeField] private GameObject foodCollectablePrefab;
     [SerializeField] private LayerMask playerLayer;
     private STask stopAttackTask;
 
@@ -191,6 +193,14 @@ public class EnemyMeleeController : MonoBehaviour
 
             Instantiate(poofPrefab, position, rotation);
             Instantiate(logPrefab, position, logPrefab.gameObject.transform.rotation);
+
+            int rng = UnityEngine.Random.Range(1,100);
+
+            if(rng<=25)
+                Instantiate(shurikenCollectablePrefab, position, rotation);
+            else if(25<rng && rng<=50)
+                Instantiate(foodCollectablePrefab, position, rotation);
+
             GameObject.Destroy(gameObject);
         }
 

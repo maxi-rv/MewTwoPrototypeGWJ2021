@@ -270,6 +270,8 @@ MonoBehaviour:
   matWhite: {fileID: 2100000, guid: 30d4f2b9a13631745a04440c8a4b4dad, type: 2}
   poofPrefab: {fileID: 8144142502428123615, guid: d4c3fd0a3e4b4b04a9050d11bea8592d, type: 3}
   logPrefab: {fileID: 3616715516114462540, guid: 532602667f522304fb59f96179bc414f, type: 3}
+  shurikenCollectablePrefab: {fileID: 8725017582454307098, guid: e727c2d237780ca40b094ecdbef68c05, type: 3}
+  foodCollectablePrefab: {fileID: 3880796587518161959, guid: 500443f0f0b7971428c0fa7f482ee1ef, type: 3}
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
