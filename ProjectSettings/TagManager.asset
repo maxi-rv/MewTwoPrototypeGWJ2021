@@ -13,6 +13,7 @@ TagManager:
   - Ammo
   - CheckPoint
   - LevelController
+  - Trap
   layers:
   - Default
   - TransparentFX

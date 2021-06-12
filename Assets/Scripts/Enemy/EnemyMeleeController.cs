@@ -86,8 +86,6 @@ public class EnemyMeleeController : MonoBehaviour
 
         if (col != null && !onCooldown && CanAttack)
         {
-            Debug.Log(col.name);
-
             bool isMelee = Vector2.Distance(col.transform.position, origin) < attackRange;
             float direction = -Mathf.Sign(origin.x - col.transform.position.x);
 
@@ -97,6 +95,7 @@ public class EnemyMeleeController : MonoBehaviour
                 {
                     animator.SetTrigger("Attacking");
                     attacking = true;
+                    rigidBody2D.velocity = Vector2.zero;
                 }
             }
             else if(onTheGround)
@@ -198,7 +197,7 @@ public class EnemyMeleeController : MonoBehaviour
 
             if(rng<=25)
                 Instantiate(shurikenCollectablePrefab, position, rotation);
-            else if(25<rng && rng<=50)
+            else if(25<rng && rng<=75)
                 Instantiate(foodCollectablePrefab, position, rotation);
 
             GameObject.Destroy(gameObject);

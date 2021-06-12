@@ -90,10 +90,8 @@ public class GameController : MonoBehaviour
                 if(currentLevel==1)
                 {
                     uiController.playFade();
-                    //STasks.Do(() => unloadScene(currentSceneName), after: 1.0f);
-                    //STasks.Do(() => loadSecondLevel(), after: 1.05f);
                     STasks.Do(() => unloadScene(currentSceneName), after: 1.0f);
-                    STasks.Do(() => loadThirdLevel(), after: 1.05f);
+                    STasks.Do(() => loadSecondLevel(), after: 1.05f);
                 }
                 if(currentLevel==2)
                 {
@@ -103,7 +101,7 @@ public class GameController : MonoBehaviour
                 }
                 if(currentLevel==3)
                 {
-                    //????
+                    //QUE HACEMOS?!
                 }
             }
 
@@ -130,14 +128,17 @@ public class GameController : MonoBehaviour
                     if(currentLevel==1)
                     {
                         AkSoundEngine.SetState("Dead_Or_Alive", "Tutorial");
+                        gameMusicID = AkSoundEngine.PostEvent("Game_Music", gameObject);
                     }  
                     else if(currentLevel==2)
                     {
                         AkSoundEngine.SetState("Dead_Or_Alive", "Alive");
+                        gameMusicID = AkSoundEngine.PostEvent("Game_Music", gameObject);
                     }     
                     else if(currentLevel==3)
                     {
                         AkSoundEngine.SetState("Dead_Or_Alive", "Level3");
+                        gameMusicID = AkSoundEngine.PostEvent("Game_Music", gameObject);
                     }
                         
                 }
@@ -161,6 +162,7 @@ public class GameController : MonoBehaviour
         loadScene(currentSceneName);
         
         //Post intro music Event
+        gameMusicID = AkSoundEngine.PostEvent("Game_Music", gameObject);
         AkSoundEngine.SetState("Dead_Or_Alive", "Tutorial");
         gameMusicID = AkSoundEngine.PostEvent("Game_Music", gameObject);
 
@@ -184,6 +186,10 @@ public class GameController : MonoBehaviour
         //Instantiates player and prepares to set its position
         instantiatePlayer();
         playerSpawnPositionSetted = false;
+
+        //Set Wwise state for Game Music
+        AkSoundEngine.SetState("Dead_Or_Alive", "Tutorial");
+        gameMusicID = AkSoundEngine.PostEvent("Game_Music", gameObject);
     }
 
     private void loadSecondLevel()
@@ -193,17 +199,17 @@ public class GameController : MonoBehaviour
         onPlayingLevel = true;
 
         //Set Camera
-        //cameraController.gameObject.SetActive(true);
-        //cameraController.verticalLimitDown = 1f;
-        //cameraController.verticalLimitUp = 3f;
-        //cameraController.horizontalLimitRight = 25f;
-        //cameraController.horizontalLimitLeft = -2f;
+        cameraController.verticalLimitDown = 1f;
+        cameraController.verticalLimitUp = 3f;
+        cameraController.horizontalLimitRight = 142f;
+        cameraController.horizontalLimitLeft = -2f;
 
         //Prepares to set player position
         playerSpawnPositionSetted = false;
 
         //Set Wwise state for Game Music
         AkSoundEngine.SetState("Dead_Or_Alive", "Alive");
+        gameMusicID = AkSoundEngine.PostEvent("Game_Music", gameObject);
     }
 
     private void loadThirdLevel()
@@ -213,7 +219,6 @@ public class GameController : MonoBehaviour
         onPlayingLevel = true;
 
         //Set Camera
-        cameraController.gameObject.SetActive(true);
         cameraController.verticalLimitDown = -1.2f;
         cameraController.verticalLimitUp = 0f;
         cameraController.horizontalLimitRight = 51f;
@@ -224,6 +229,7 @@ public class GameController : MonoBehaviour
 
         //Set Wwise state for Game Music
         AkSoundEngine.SetState("Dead_Or_Alive", "Level3");
+        gameMusicID = AkSoundEngine.PostEvent("Game_Music", gameObject);
         ambient2ID = AkSoundEngine.PostEvent("Ambiente2", gameObject);
     }
 
@@ -267,7 +273,7 @@ public class GameController : MonoBehaviour
     private void unloadScene(string scene)
     {
         SceneManager.UnloadSceneAsync(scene);
-        
+        AkSoundEngine.StopAll();
     }
 
     //Places Player on SpawnPoint

@@ -277,9 +277,9 @@ MonoBehaviour:
     m_Bits: 128
   maxHP: 2
   meleeDamage: 1
-  detectionRange: 2
-  attackRange: 0.75
-  attackForce: 3.5
+  detectionRange: 1.5
+  attackRange: 0.7
+  attackForce: 3.1
   attackForceVertical: 5
   AttackCooldown: 2
   hurtForce: 0
