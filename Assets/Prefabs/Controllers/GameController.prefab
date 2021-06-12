@@ -125,7 +125,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5629232441959964614
 RectTransform:
   m_ObjectHideFlags: 0
@@ -738,11 +738,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7016ca245af4034ebcb475cf26210af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackgroundMenu: {fileID: 574876643456017275}
   HPBarFront: {fileID: 7179978725147072565}
   HPBarBack: {fileID: 4350725100352496251}
   Message: {fileID: 2012595378179555223}
   ShurikenScroll: {fileID: 7594350286198655596}
   ShurikenCounter: {fileID: 1338185143688683958}
+  MaskAnimation: {fileID: 7356981180015136181}
   Fader: {fileID: 230640479}
   currentHP: 0
   maxHP: 0
@@ -894,13 +896,15 @@ GameObject:
   - component: {fileID: 3278136900798307547}
   - component: {fileID: 1507587145897403047}
   - component: {fileID: 2958261973522277249}
+  - component: {fileID: 6089831746036874157}
+  - component: {fileID: 7055165017922574806}
   m_Layer: 0
   m_Name: IntroMaskAnim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5636376966596898050
 RectTransform:
   m_ObjectHideFlags: 0
@@ -935,7 +939,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7356981180015136181}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -968,7 +972,7 @@ Animator:
   m_GameObject: {fileID: 7356981180015136181}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f8f50eb2c86e33f4fb61d309710deec6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -977,6 +981,41 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6089831746036874157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7356981180015136181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cae1ddcdc91a8b74d9edaeeaf8ffdc6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationFinished: 0
+--- !u!114 &7055165017922574806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7356981180015136181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ab2101cd6af8a148bdf1df91b3c709d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_listeners:
+    initialListenerList: []
+    useDefaultListeners: 1
+  isEnvironmentAware: 1
+  isStaticObject: 0
+  m_positionOffsetData:
+    KeepMe: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
 --- !u!1 &7594350286198655596
 GameObject:
   m_ObjectHideFlags: 0
@@ -1101,6 +1140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiController: {fileID: 9196381737433922699}
   cameraController: {fileID: 284206515395669281}
+  maskAnimController: {fileID: 6089831746036874157}
   levelController: {fileID: 0}
   playerPrefab: {fileID: 4721134543759675922, guid: e4781bce0df3f2b4690ce9c3831df980, type: 3}
 --- !u!114 &7376333813289143193

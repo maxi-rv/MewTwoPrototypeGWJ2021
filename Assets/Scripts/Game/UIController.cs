@@ -7,11 +7,13 @@ using TMPro;
 public class UIController : MonoBehaviour
 {
     // Variables
+    [SerializeField] private GameObject BackgroundMenu;
     [SerializeField] private GameObject HPBarFront;
     [SerializeField] private GameObject HPBarBack;
     [SerializeField] private GameObject Message;
     [SerializeField] private GameObject ShurikenScroll;
     [SerializeField] private GameObject ShurikenCounter;
+    [SerializeField] private GameObject MaskAnimation;
     [SerializeField] private GameObject Fader;
     private Image hpBar;
     public float currentHP;
@@ -81,5 +83,25 @@ public class UIController : MonoBehaviour
     public void playFade()
     {
         Fader.GetComponent<Animator>().SetTrigger("Start");
+    }
+
+    public void enableBackgroundMenu()
+    {
+        BackgroundMenu.SetActive(true);
+    }
+
+    public void disableBackgroundMenu()
+    {
+        BackgroundMenu.SetActive(false);
+    }
+
+    public void enableMaskAnimation()
+    {
+        MaskAnimation.SetActive(true);
+    }
+
+    public void disableMaskAnimation()
+    {
+        MaskAnimation.SetActive(false);
     }
 }

@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     //COMPONENTS
     [SerializeField] private UIController uiController;
     [SerializeField] private CameraController cameraController;
+    [SerializeField] private MaskAnimController maskAnimController;
     public LevelController levelController;
 
     //Wwise Event IDs
@@ -28,6 +29,7 @@ public class GameController : MonoBehaviour
     private bool playerIsDead;
     private int currentLevel;
     private bool playerSpawnPositionSetted;
+    private bool flagSetted;
 
     void Awake()
     {
@@ -44,6 +46,7 @@ public class GameController : MonoBehaviour
         //Preparing first message
         onPlayingLevel = false;
         playerSpawnPositionSetted = false;
+        flagSetted = false;
         currentLevel = -1;
         uiController.showStartMessage();
 
@@ -60,8 +63,15 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
+        if(maskAnimController.animationFinished && !flagSetted)
+        {
+            uiController.playFade();
+            STasks.Do(() => uiController.disableMaskAnimation(), after: 1.0f);
+            flagSetted = true;
+        }
+
         //Press Enter to Start
-        if(Input.GetKey(KeyCode.Return) && !onPlayingLevel && currentLevel!=0)
+        if(Input.GetKey(KeyCode.Return) && !onPlayingLevel && currentLevel!=0 && maskAnimController.animationFinished)
         {
             currentLevel = 0;
             uiController.playFade();
@@ -102,6 +112,8 @@ public class GameController : MonoBehaviour
                 if(currentLevel==3)
                 {
                     //QUE HACEMOS?!
+                    uiController.playFade();
+                    STasks.Do(() => Application.Quit(), after: 1.0f);
                 }
             }
 
@@ -168,6 +180,7 @@ public class GameController : MonoBehaviour
 
         //Updates HUD
         uiController.disableMessage();
+        uiController.disableBackgroundMenu();
     }
 
     private void loadFirstLevel()
