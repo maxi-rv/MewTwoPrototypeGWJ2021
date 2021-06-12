@@ -188,11 +188,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 284206515395669281, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
       propertyPath: verticalLimitUp
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 284206515395669281, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
       propertyPath: verticalLimitDown
-      value: 1
+      value: -1.2
       objectReference: {fileID: 0}
     - target: {fileID: 1902739572078301324, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
       propertyPath: m_SizeDelta.x
@@ -308,7 +308,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8453382052372583592, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
       propertyPath: firstSceneName
-      value: Level2
+      value: Level3
       objectReference: {fileID: 0}
     - target: {fileID: 8762752727022628725, guid: 19c82df88ec0bba429d6128ab1a0d81e, type: 3}
       propertyPath: m_Name
