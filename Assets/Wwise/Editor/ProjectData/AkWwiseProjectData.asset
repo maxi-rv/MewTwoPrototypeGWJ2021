@@ -359,7 +359,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 8d90199323c1754ea80f5ad115f182ba
     GuidInternal: 
-    m_lastTime: -8585783226637367309
+    m_lastTime: -8585781418550047228
     List:
     - name: Ambiente1
       guid: 05596bc0eb7f064cb9ece45d4642f936
@@ -631,8 +631,25 @@ MonoBehaviour:
         guid: 8b53ccc59f30ef44aed5b033d8e16eb6
       Path: Events\Default Work Unit\Walking
       maxAttenuation: 0
-      maxDuration: 0.946235
-      minDuration: 0.488937
+      maxDuration: 0.347
+      minDuration: 0.250406
+    - name: Walking_Grass
+      guid: 963d3221caff8044b793de170e85f5f9
+      id: 4104411965
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 8d90199323c1754ea80f5ad115f182ba
+      - ElementName: Walking_Grass
+        ObjectType: 3
+        guid: 963d3221caff8044b793de170e85f5f9
+      Path: Events\Default Work Unit\Walking_Grass
+      maxAttenuation: 0
+      maxDuration: 1.158243
+      minDuration: 0.598485
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     PathAndIcons:
@@ -817,7 +834,7 @@ MonoBehaviour:
     GuidInternal: 
     m_lastTime: -8585798034102731527
     List: []
-  ExpandedFileSystemItemIds: 0200000003000000100000001200000013000000190000001a0000001d00000020000000
+  ExpandedFileSystemItemIds: 02000000030000000400000005000000100000001200000013000000160000001700000018000000190000001a0000001d00000020000000
   ExpandedWaapiItemIds: 02000000030000001200000013000000190000001a0000001d000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1

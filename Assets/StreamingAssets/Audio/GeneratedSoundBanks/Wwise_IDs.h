@@ -29,6 +29,7 @@ namespace AK
         static const AkUniqueID SWORD_HIT = 4057287994U;
         static const AkUniqueID SWORD_SLASH = 1055183530U;
         static const AkUniqueID WALKING = 340271938U;
+        static const AkUniqueID WALKING_GRASS = 4104411965U;
     } // namespace EVENTS
 
     namespace STATES
