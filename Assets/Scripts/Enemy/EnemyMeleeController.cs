@@ -191,7 +191,7 @@ public class EnemyMeleeController : MonoBehaviour
                 position = position + new Vector3(0.15f,0f,0f);
 
             Instantiate(poofPrefab, position, rotation);
-            Instantiate(logPrefab, position, logPrefab.gameObject.transform.rotation);
+            //Instantiate(logPrefab, position, logPrefab.gameObject.transform.rotation);
 
             int rng = UnityEngine.Random.Range(1,100);
 
